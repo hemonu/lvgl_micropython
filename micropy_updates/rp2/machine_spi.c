@@ -83,7 +83,7 @@ typedef struct _mp_machine_hw_spi_bus_obj_t {
     mp_obj_t sck;
     mp_obj_t mosi;
     mp_obj_t miso;
-    int16_t active_devices;
+    int16_t device_count;
     mp_machine_hw_spi_state_t state;
     void *user_data;
 } mp_machine_hw_spi_bus_obj_t;
@@ -109,7 +109,7 @@ mp_machine_hw_spi_bus_obj_t rp2_machine_spi_bus_obj[] = {
         .sck = MP_OBJ_NULL,
         .mosi = MP_OBJ_NULL,
         .miso = MP_OBJ_NULL,
-        .active_devices = 0,
+        .device_count = 0,
         .state = 0,
         .user_data = (const void *)spi0
     },
@@ -118,7 +118,7 @@ mp_machine_hw_spi_bus_obj_t rp2_machine_spi_bus_obj[] = {
         .sck = MP_OBJ_NULL,
         .mosi = MP_OBJ_NULL,
         .miso = MP_OBJ_NULL,
-        .active_devices = 0,
+        .device_count = 0,
         .state = 0,
         .user_data = (const void *)spi1
     }
@@ -227,7 +227,7 @@ mp_obj_t machine_spi_make_new(const mp_obj_type_t *type, size_t n_args, size_t n
     }
 
     self->active = true;
-    self->spi_bus->active_devices++;
+    self->spi_bus->device_count++;
 
     return MP_OBJ_FROM_PTR(self);
 }
@@ -244,10 +244,10 @@ static void machine_spi_deinit(mp_obj_base_t *self_in)
 {
     machine_hw_spi_obj_t *self = (machine_hw_spi_obj_t *)self_in;
     if (self->active) {
-        self->spi_bus->active_devices--;
+        self->spi_bus->device_count--;
         self->active = false;
 
-        if (self->spi_bus->active_devices == 0) {
+        if (self->spi_bus->device_count == 0) {
             self->spi_bus->state = MP_SPI_STATE_STOPPED;
         }
     }
