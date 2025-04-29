@@ -10,7 +10,7 @@
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
-            "args": ["rp2","BOARD=RPI_PICO_W"]
+            "args": ["rp2","BOARD=RPI_PICO2"]
         }
     ]
 }
