@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "dma.h": "c"
-    }
+    },
+    "idf.pythonInstallPath": "/usr/bin/python"
 }

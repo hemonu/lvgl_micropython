@@ -4,12 +4,13 @@
     // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+
         {
             "name": "Python-Debugger: Aktuelle Datei mit Argumenten",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
+            //"args": ["esp32", "custom-board-path=../../esp32/ELECROW_DLC35010R", "DISPLAY=ili9488", "INDEV=ft6x36"]
             "args": ["rp2","BOARD=RPI_PICO2"]
         }
     ]
