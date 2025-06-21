@@ -19,6 +19,8 @@
         #include "esp_lcd_panel_ops.h"
         #include "esp_lcd_panel_interface.h"
         #include "esp_lcd_panel_rgb.h"
+        #include "esp_private/gdma.h"
+        #include "esp_private/gdma_link.h"
 
         #include "freertos/FreeRTOS.h"
         #include "freertos/task.h"
@@ -39,15 +41,22 @@
             size_t fb_bits_per_pixel; // Frame buffer color depth, in bpp
             size_t num_fbs;           // Number of frame buffers
             size_t output_bits_per_pixel; // Color depth seen from the output data line. Default to fb_bits_per_pixel, but can be changed by YUV-RGB conversion
-            size_t sram_trans_align;  // Alignment for framebuffer that allocated in SRAM
-            size_t psram_trans_align; // Alignment for framebuffer that allocated in PSRAM
+            size_t dma_burst_size;  // DMA transfer burst size
             int disp_gpio_num;     // Display control GPIO, which is used to perform action like "disp_off"
             intr_handle_t intr;    // LCD peripheral interrupt handle
             esp_pm_lock_handle_t pm_lock; // Power management lock
             size_t num_dma_nodes;  // Number of DMA descriptors that used to carry the frame buffer
+            gdma_channel_handle_t dma_chan; // DMA channel handle
+            gdma_link_list_handle_t dma_fb_links[3]; // DMA link lists for multiple frame buffers
+            gdma_link_list_handle_t dma_bb_link; // DMA link list for bounce buffer
+        #if CONFIG_IDF_TARGET_ESP32S3
+            gdma_link_list_handle_t dma_restart_link; // DMA link list for restarting the DMA
+        #endif
             uint8_t *fbs[3]; // Frame buffers
+            uint8_t *bounce_buffer[2]; // Pointer to the bounce buffers
+            size_t fb_size;        // Size of frame buffer, in bytes
+            size_t bb_size;        // Size of the bounce buffer, in bytes. If not-zero, the driver uses two bounce buffers allocated from internal memory
             uint8_t cur_fb_index;  // Current frame buffer index
-            uint8_t bb_fb_index;  // Current frame buffer index which used by bounce buffer
         } rgb_panel_t;
 
         typedef struct _rgb_bus_lock_t {
@@ -59,16 +68,6 @@
             EventGroupHandle_t handle;
             StaticEventGroup_t buffer;
         } rgb_bus_event_t;
-
-    #if LCD_RGB_OPTIMUM_FB_SIZE
-        typedef struct _rgb_bus_optimum_fb_size_t {
-            uint16_t flush_count;
-            uint8_t sample_count;
-            uint8_t curr_index;
-            uint16_t *samples;
-            rgb_bus_lock_t lock;
-        } rgb_bus_optimum_fb_size_t;
-    #endif
 
         typedef struct _mp_lcd_rgb_bus_obj_t {
             mp_obj_base_t base;
@@ -117,10 +116,6 @@
             mp_lcd_err_t init_err;
             mp_rom_error_text_t init_err_msg;
 
-        #if LCD_RGB_OPTIMUM_FB_SIZE
-            rgb_bus_optimum_fb_size_t optimum_fb;
-        #endif
-
         } mp_lcd_rgb_bus_obj_t;
 
         void rgb_bus_event_init(rgb_bus_event_t *event);
@@ -144,7 +139,6 @@
         extern const mp_obj_type_t mp_lcd_rgb_bus_type;
 
         extern void mp_lcd_rgb_bus_deinit_all(void);
-
 
     #endif /* _ESP32_RGB_BUS_H_ */
 #else

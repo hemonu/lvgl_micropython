@@ -222,11 +222,6 @@
             if (self->partial_buf == NULL) break;
             last_update = self->last_update;
 
-
-        #if LCD_RGB_OPTIMUM_FB_SIZE
-            self->optimum_fb.flush_count += 1;
-        #endif
-
             idle_fb = self->idle_fb;
 
             copy_pixels(
@@ -269,23 +264,6 @@
             }
 
             if (last_update) {
-
-            #if LCD_RGB_OPTIMUM_FB_SIZE
-                if (self->optimum_fb.curr_index == 254) {
-                    self->optimum_fb.curr_index = 0;
-                } else {
-                    self->optimum_fb.curr_index += 1;
-                }
-                if (self->optimum_fb.sample_count < 255) {
-                    self->optimum_fb.sample_count += 1;
-                }
-                self->optimum_fb.samples[self->optimum_fb.curr_index] = self->optimum_fb.flush_count;
-                self->optimum_fb.flush_count = 0;
-
-                rgb_bus_lock_release(&self->optimum_fb.lock);
-                rgb_bus_lock_acquire(&self->optimum_fb.lock, -1);
-            #endif
-
                 mp_lcd_err_t ret = esp_lcd_panel_draw_bitmap(
                     self->panel_handle,
                     0,
@@ -307,7 +285,7 @@
             exit = rgb_bus_event_isset(&self->copy_task_exit);
         }
 
-        LCD_DEBUG_PRINT(&mp_plat_print, "rgb_bus_copy_task - STOPPED\n")
+        LCD_DEBUG_PRINT("rgb_bus_copy_task - STOPPED\n")
     }
 
 
@@ -346,7 +324,7 @@
                     MIN(x_end, dst_width), MIN(y_end, dst_height),
                     dst_width, dst_height, bytes_per_pixel, rgb565_dither);
         } else {
-            // y_end += 1;
+            y_end += 1; // removes black lines between blocks
             if (rotate == RGB_BUS_ROTATION_90 || rotate == RGB_BUS_ROTATION_270) {
                 x_start = MIN(x_start, dst_height);
                 x_end = MIN(x_end, dst_height);
@@ -436,6 +414,7 @@
                         src++;
                         i--;
                     }
+                    src++;
                 }
                 break;
 
@@ -498,6 +477,7 @@
                             src++;
                             i--;
                         }
+                        src++;
                     }
                     break;
 
@@ -545,7 +525,8 @@
                             src++;
                             i--;
                         }
-                    }
+                        src++;
+                }
                     break;
 
                 // SWAP_XY   MIRROR_X
@@ -605,6 +586,7 @@
                         src += 3;
                         i -= 3;
                     }
+                    src++;
                 }
                 break;
 
@@ -663,6 +645,7 @@
                         src++;
                         i--;
                     }
+                    src++;
                 }
                 break;
 

@@ -29,7 +29,7 @@ hsync = 39
 vsync = 41
 de = 40
 pclk = 42
-freq = 12000000
+freq = 16000000
 hsync_front_porch = 8
 hsync_back_porch = 8
 hsync_pulse_width = 4
@@ -71,22 +71,14 @@ params = [true]
 [display.init]
 params = []
 
+
 [FT6x36.indev]
 device = "indev_device"
 
-[indev.firmware_config.fw_config]
-
-[fw_config.width]
-value=800
-
-[fw_config.height]
-value=480
-
-[fw_config.save]
-params=[]
 
 [display.set_backlight]
 params = [100]
+
 
 [task_handler.TaskHandler]
 params=[]

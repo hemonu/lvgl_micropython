@@ -21,8 +21,8 @@
         mp_obj_base_t base;
         uint8_t host;
         mp_obj_t sck;
-        mp_obj_t mosi;
-        mp_obj_t miso;
+        mp_obj_t data0;
+        mp_obj_t data1;
         mp_obj_t data2;
         mp_obj_t data3;
         mp_obj_t data4;
@@ -66,4 +66,3 @@
     void mp_machine_hw_spi_bus_deinit_all(void);
 
 #endif /* __MP_SPI_COMMON_H__ */
-
