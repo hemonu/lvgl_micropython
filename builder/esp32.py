@@ -441,6 +441,35 @@ def common_args(extra_args):
     components = esp_args.components
     user_c_modules = esp_args.user_c_modules
 
+    for i, c_module in enumerate(user_c_modules):
+        if c_module.startswith('http'):
+            git_address, c_module = c_module.rsplit(':', 1)
+            if '@' in git_address:
+                git_address, checkout = git_address.split('@', 1)
+            else:
+                checkout = None
+
+            c_module_name = os.path.split(git_address)[-1]
+
+            c_module = os.path.join(SCRIPT_DIR, 'ext_mod', c_module_name, c_module)
+            user_c_modules[i] = c_module
+
+            cmds = [
+                ['cd', 'ext_mod'],
+                ['git', 'clone', git_address],
+                ['cd', c_module_name]
+            ]
+
+            if checkout is not None:
+                cmds.append(['git', 'checkout', checkout])
+
+            cmds.append(['git', 'submodule', 'init'])
+
+            exit_code, data = spawn(cmds, out_to_screen=False, spinner=True)
+            if exit_code:
+                print(data)
+                sys.exit(exit_code)
+
     if custom_board_path is None:
         skip_partition_resize = esp_args.skip_partition_resize
         partition_size = esp_args.partition_size
@@ -1231,6 +1260,18 @@ def update_mpconfigport():
     write_file(MPCONFIGPORT_PATH, data)
 
 
+def update_mkrules():
+    mkrules_path = 'lib/micropython/py/mkrules.cmake'
+    with open(mkrules_path, 'rb') as f:
+        data = f.read().decode('utf-8')
+
+    if 'REMOVE_DUPLICATES' not in data:
+        data = data.replace('add_custom_command(', 'list(REMOVE_DUPLICATES MICROPY_CPP_FLAGS)\n\nadd_custom_command(', 1)
+
+        with open(mkrules_path, 'wb') as f:
+            f.write(data.encode('utf-8'))
+
+
 def update_main():
     # data = read_file('esp32', MAIN_PATH)
 
@@ -1289,7 +1330,7 @@ def update_main():
 
 def build_sdkconfig(*args):
     if custom_board_path is not None:
-        return
+        return []
 
     base_config = [
         '',
@@ -1389,6 +1430,8 @@ def build_sdkconfig(*args):
     with open(SDKCONFIG_PATH, 'w') as f:
         f.write('\n'.join(base_config))
 
+    return args
+
 
 def revert_custom_board():
     if custom_board_path is None:
@@ -1412,7 +1455,7 @@ def compile(*args):  # NOQA
     if ccache:
         env['IDF_CCACHE_ENABLE'] = '1'
 
-    build_sdkconfig(*args)
+    args = build_sdkconfig(*args)
 
     if custom_board_path is None:
 
@@ -1429,12 +1472,13 @@ def compile(*args):  # NOQA
     update_panic_handler()
     update_mpconfigboard()
     update_mpconfigport()
+    update_mkrules()
 
     copy_micropy_updates('esp32')
 
     try:
         cmd_ = compile_cmd[:]
-        cmd_.extend(list(args))
+        cmd_.extend(args)
 
         ret_code, output = spawn(cmd_, env=env, cmpl=True)
 
