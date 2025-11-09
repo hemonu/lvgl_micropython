@@ -31,6 +31,23 @@ if(ESP_PLATFORM)
         list(APPEND LCD_INCLUDES ${ESP_LCD_INCLUDES})
     endif()
 
+elseif ( $ENV{TARGET} MATCHES "rp2")
+
+    message ("Port is rp2")
+    set(LCD_INCLUDES
+        ${CMAKE_CURRENT_LIST_DIR}
+        ${CMAKE_CURRENT_LIST_DIR}/rp2_include
+    )
+
+    set(LCD_SOURCES
+        ${CMAKE_CURRENT_LIST_DIR}/lcd_types.c
+        ${CMAKE_CURRENT_LIST_DIR}/modlcd_bus.c
+        ${CMAKE_CURRENT_LIST_DIR}/rp2_src/i2c_bus.c
+        ${CMAKE_CURRENT_LIST_DIR}/rp2_src/spi_bus.c
+        ${CMAKE_CURRENT_LIST_DIR}/rp2_src/i80_bus.c
+        #${CMAKE_CURRENT_LIST_DIR}/rp2_src/rgb_bus.c
+    )
+
 else()
     set(LCD_INCLUDES
         ${CMAKE_CURRENT_LIST_DIR}

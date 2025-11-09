@@ -83,6 +83,7 @@ argParser.add_argument(
 args1, extra_args = argParser.parse_known_args(extra_args)
 target = args1.target[0]
 
+os.environ['TARGET'] = target.lower()
 
 argParser = ArgumentParser(prefix_chars='-mscLBFDIVE')
 

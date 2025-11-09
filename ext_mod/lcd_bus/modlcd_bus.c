@@ -5,7 +5,7 @@
 #include "spi_bus.h"
 #include "i2c_bus.h"
 #include "i80_bus.h"
-#include "rgb_bus.h"
+//#include "rgb_bus.h"
 
 #ifdef MP_PORT_UNIX
     #include "sdl_bus.h"
@@ -287,9 +287,13 @@ MP_DEFINE_CONST_DICT(mp_lcd_bus_locals_dict, mp_lcd_bus_locals_dict_table);
 
 static const mp_rom_map_elem_t mp_module_lcd_bus_globals_table[] = {
     { MP_ROM_QSTR(MP_QSTR___name__),           MP_OBJ_NEW_QSTR(MP_QSTR_lcd_bus)        },
+    #ifdef ESP_IDF_VERSION
     { MP_ROM_QSTR(MP_QSTR_RGBBus),             MP_ROM_PTR(&mp_lcd_rgb_bus_type)        },
+    #endif
     { MP_ROM_QSTR(MP_QSTR_SPIBus),             MP_ROM_PTR(&mp_lcd_spi_bus_type)        },
+    #ifdef ESP_IDF_VERSION
     { MP_ROM_QSTR(MP_QSTR_I2CBus),             MP_ROM_PTR(&mp_lcd_i2c_bus_type)        },
+    #endif
     { MP_ROM_QSTR(MP_QSTR_I80Bus),             MP_ROM_PTR(&mp_lcd_i80_bus_type)        },
     { MP_ROM_QSTR(MP_QSTR__pump_main_thread),  MP_ROM_PTR(&mp_lcd_bus__pump_main_thread_obj)       },
 
