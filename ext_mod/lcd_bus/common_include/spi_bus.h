@@ -88,7 +88,7 @@
             void (*send_param)(mp_lcd_spi_bus_obj_t *self, void *param, size_t param_size);
 
             int host;
-            mp_machine_hw_spi_device_obj_t *spi_bus;
+            machine_hw_spi_obj_t *spi_bus;
             uint8_t firstbit;
             uint32_t freq;
         };

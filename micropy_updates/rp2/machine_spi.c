@@ -94,7 +94,7 @@ mp_machine_hw_spi_bus_obj_t rp2_machine_spi_bus_obj[] = {
 };
 
 static void machine_spi_print(const mp_print_t *print, mp_obj_t self_in, mp_print_kind_t kind) {
-    mp_machine_hw_spi_device_obj_t *self = MP_OBJ_TO_PTR(self_in);
+    machine_hw_spi_obj_t *self = MP_OBJ_TO_PTR(self_in);
     mp_printf(print, "SPI(%u, baudrate=%u, polarity=%u, phase=%u, bits=%u, sck=%d, mosi=%d, miso=%d, cs=%d, active=%s, #dev=%u)",
         self->spi_bus->host, self->freq, self->polarity, self->phase, self->bits,
         (self->spi_bus->sck == MP_OBJ_NULL) ? -1 : mp_obj_get_int(self->spi_bus->sck), 
@@ -132,7 +132,7 @@ mp_obj_t machine_spi_make_new(const mp_obj_type_t *type, size_t n_args, size_t n
         mp_raise_msg_varg(&mp_type_ValueError, MP_ERROR_TEXT("SPI(%d) doesn't exist"), spi_id);
     }
 
-    mp_machine_hw_spi_device_obj_t *self = mp_obj_malloc_with_finaliser(mp_machine_hw_spi_device_obj_t, &machine_spi_type);
+    machine_hw_spi_obj_t *self = mp_obj_malloc_with_finaliser(machine_hw_spi_obj_t, &machine_spi_type);
     // self->base.type = &machine_spi_type;
 
     mp_machine_hw_spi_bus_obj_t *spi_bus = &rp2_machine_spi_bus_obj[spi_id];
@@ -225,7 +225,7 @@ static void machine_spi_init(mp_obj_base_t *self_in, size_t n_args, const mp_obj
     };
 
     // Parse the arguments.
-    mp_machine_hw_spi_device_obj_t *self = (mp_machine_hw_spi_device_obj_t *)self_in;
+    machine_hw_spi_obj_t *self = (machine_hw_spi_obj_t *)self_in;
     mp_arg_val_t args[MP_ARRAY_SIZE(allowed_args)];
     mp_arg_parse_all(n_args, pos_args, kw_args, MP_ARRAY_SIZE(allowed_args), allowed_args, args);
 
@@ -244,7 +244,7 @@ static void machine_spi_init(mp_obj_base_t *self_in, size_t n_args, const mp_obj
 
 static void machine_spi_deinit(mp_obj_base_t *self_in)
 {
-    mp_machine_hw_spi_device_obj_t *self = (mp_machine_hw_spi_device_obj_t *)self_in;
+    machine_hw_spi_obj_t *self = (machine_hw_spi_obj_t *)self_in;
     if (self->active) {
         if (self->cs != mp_const_none) {
             mp_hal_pin_input(mp_hal_get_pin_obj(self->cs));
@@ -266,7 +266,7 @@ static void machine_spi_deinit(mp_obj_base_t *self_in)
 static void machine_spi_transfer(mp_obj_base_t *self_in, size_t len, const uint8_t *src, uint8_t *dest)
 {
     //mp_printf(&mp_plat_print, "machine_spi_transfer: entered\n");
-    mp_machine_hw_spi_device_obj_t *self = (mp_machine_hw_spi_device_obj_t *)self_in;
+    machine_hw_spi_obj_t *self = (machine_hw_spi_obj_t *)self_in;
 
     if (self->spi_bus->state == MP_SPI_STATE_STOPPED) {
         mp_raise_msg(&mp_type_OSError, MP_ERROR_TEXT("transfer on deinitialized SPI"));
@@ -361,7 +361,7 @@ static void machine_spi_transfer(mp_obj_base_t *self_in, size_t len, const uint8
 // Buffer protocol implementation for SPI.
 // The buffer represents the SPI data FIFO.
 static mp_int_t machine_spi_get_buffer(mp_obj_t o_in, mp_buffer_info_t *bufinfo, mp_uint_t flags) {
-    mp_machine_hw_spi_device_obj_t *self = MP_OBJ_TO_PTR(o_in);
+    machine_hw_spi_obj_t *self = MP_OBJ_TO_PTR(o_in);
     spi_inst_t *const spi_inst = (spi_inst_t *const)self->spi_bus->user_data;
 
     bufinfo->len = 4;

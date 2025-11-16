@@ -16,7 +16,7 @@
 
     #ifdef ESP_IDF_VERSION
         typedef struct _mp_machine_hw_spi_bus_obj_t mp_machine_hw_spi_bus_obj_t;
-        typedef struct _mp_machine_hw_spi_device_obj_t mp_machine_hw_spi_device_obj_t;
+        typedef struct _machine_hw_spi_obj_t machine_hw_spi_obj_t;
 
         struct _mp_machine_hw_spi_bus_obj_t {
             mp_obj_base_t base;
@@ -34,13 +34,13 @@
             bool quad;
             bool octal;
             uint8_t device_count;
-            mp_machine_hw_spi_device_obj_t **devices;
+            machine_hw_spi_obj_t **devices;
             mp_machine_hw_spi_state_t state;
             const void *user_data;
             void (*deinit)(mp_machine_hw_spi_bus_obj_t *bus);
         };
 
-        struct _mp_machine_hw_spi_device_obj_t {
+        struct _machine_hw_spi_obj_t {
             mp_obj_base_t base;
             uint32_t freq;
             uint8_t polarity;
@@ -54,12 +54,12 @@
             mp_obj_t cs;
             mp_machine_hw_spi_bus_obj_t *spi_bus;
             void *user_data;
-            void (*deinit)(mp_machine_hw_spi_device_obj_t *device);
+            void (*deinit)(machine_hw_spi_obj_t *device);
         };
 
         void mp_machine_hw_spi_bus_initilize(mp_machine_hw_spi_bus_obj_t *bus);
-        void mp_machine_hw_spi_bus_add_device(mp_machine_hw_spi_device_obj_t *device);
-        void mp_machine_hw_spi_bus_remove_device(mp_machine_hw_spi_device_obj_t *device);
+        void mp_machine_hw_spi_bus_add_device(machine_hw_spi_obj_t *device);
+        void mp_machine_hw_spi_bus_remove_device(machine_hw_spi_obj_t *device);
 
         extern const mp_obj_type_t mp_machine_hw_spi_device_type;
         extern const mp_obj_type_t mp_machine_hw_spi_bus_type;
@@ -67,7 +67,7 @@
         void mp_machine_hw_spi_bus_deinit_all(void);
     #else
         typedef struct _mp_machine_hw_spi_bus_obj_t mp_machine_hw_spi_bus_obj_t;
-        typedef struct _mp_machine_hw_spi_device_obj_t mp_machine_hw_spi_device_obj_t;
+        typedef struct _machine_hw_spi_obj_t machine_hw_spi_obj_t;
 
         struct _mp_machine_hw_spi_bus_obj_t {
         mp_obj_base_t base;
@@ -76,13 +76,13 @@
         mp_obj_t mosi;
         mp_obj_t miso;
         uint8_t device_count;
-        mp_machine_hw_spi_device_obj_t **devices;
+        machine_hw_spi_obj_t **devices;
         mp_machine_hw_spi_state_t state;
         const void *user_data;
         void (*deinit)(mp_machine_hw_spi_bus_obj_t *bus);
     } ;
 
-    struct _mp_machine_hw_spi_device_obj_t {
+    struct _machine_hw_spi_obj_t {
         mp_obj_base_t base;
         uint32_t freq;
         uint8_t polarity;
@@ -93,9 +93,8 @@
         mp_obj_t cs;
         mp_machine_hw_spi_bus_obj_t *spi_bus;
         void *user_data;
-        void (*deinit)(mp_machine_hw_spi_device_obj_t *device);
+        void (*deinit)(machine_hw_spi_obj_t *device);
     } ;
 
-        typedef struct _mp_machine_hw_spi_device_obj_t machine_hw_spi_obj_t;
     #endif
 #endif /* __MP_SPI_COMMON_H__ */

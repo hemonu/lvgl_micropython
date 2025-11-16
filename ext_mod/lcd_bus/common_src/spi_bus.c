@@ -134,7 +134,7 @@
         mp_lcd_spi_bus_obj_t *self = m_new_obj(mp_lcd_spi_bus_obj_t);
         self->base.type = &mp_lcd_spi_bus_type;
 
-        self->spi_bus = (mp_machine_hw_spi_device_obj_t *)MP_OBJ_TO_PTR(args[ARG_spi_bus].u_obj);
+        self->spi_bus = (machine_hw_spi_obj_t *)MP_OBJ_TO_PTR(args[ARG_spi_bus].u_obj);
 
     #if !defined(IDF_VER)
         self->callback = mp_const_none;
@@ -413,7 +413,7 @@
 
     /* end function definitions */
 
-    
+
 #endif
 
 static const mp_rom_map_elem_t mp_lcd_spi_bus_locals_dict_table[] = {
