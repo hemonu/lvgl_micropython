@@ -8,7 +8,7 @@
 #include "py/mperrno.h"
 #include "extmod/modmachine.h"
 
-#include "../../../../micropy_updates/common/mp_spi_rp2.h"
+#include "../../../../micropy_updates/common/mp_spi_common.h"
 #include "hardware/spi.h"
 #include "hardware/dma.h"
 

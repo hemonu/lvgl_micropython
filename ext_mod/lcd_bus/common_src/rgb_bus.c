@@ -24,12 +24,11 @@ mp_obj_t mp_lcd_rgb_bus_make_new(const mp_obj_type_t *type, size_t n_args, size_
     return mp_const_none;
 }
 
-
 MP_DEFINE_CONST_OBJ_TYPE(
     mp_lcd_rgb_bus_type,
     MP_QSTR_RGBBus,
     MP_TYPE_FLAG_NONE,
-    make_new, mp_lcd_rgb_bus_make_new,
-    locals_dict, (mp_obj_dict_t *)&mp_lcd_bus_locals_dict
+    make_new, mp_lcd_rgb_bus_make_new
+    //locals_dict, (mp_obj_dict_t *)&mp_lcd_bus_locals_dict
 );
 
