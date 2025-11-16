@@ -1,6 +1,10 @@
 {
     "files.associations": {
-        "dma.h": "c"
+        "dma.h": "c",
+        "spi.h": "c",
+        "dreq.h": "c",
+        "modmachine.h": "c",
+        "mphalport.h": "c"
     },
     "idf.pythonInstallPath": "/usr/bin/python"
 }

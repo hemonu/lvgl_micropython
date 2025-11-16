@@ -340,15 +340,26 @@ mp_lcd_err_t lcd_panel_io_del(mp_obj_t obj)
 
 mp_lcd_err_t lcd_panel_io_init(mp_obj_t obj, uint16_t width, uint16_t height, uint8_t bpp, uint32_t buffer_size, bool rgb565_byte_swap, uint8_t cmd_bits, uint8_t param_bits)
 {
+    LCD_DEBUG_PRINT("Entering lcd_panel_io_get_lane_count\n")
     mp_lcd_bus_obj_t *self = (mp_lcd_bus_obj_t *)obj;
 
+    LCD_DEBUG_PRINT("SPI_init address: %x\n", self->panel_io_handle.init)
     return self->panel_io_handle.init(obj, width, height, bpp, buffer_size, rgb565_byte_swap, cmd_bits, param_bits);
 }
 
 
 mp_lcd_err_t lcd_panel_io_get_lane_count(mp_obj_t obj, uint8_t *lane_count)
 {
+    LCD_DEBUG_PRINT("Entering lcd_panel_io_get_lane_count\n")
     mp_lcd_bus_obj_t *self = (mp_lcd_bus_obj_t *)obj;
+    LCD_DEBUG_PRINT("SPI_get_lane_count address: %x\n", self->panel_io_handle.get_lane_count)
+    LCD_DEBUG_PRINT("SPI_init address: %x\n", self->panel_io_handle.init)
+    LCD_DEBUG_PRINT("SPI_rx_param address: %x\n", self->panel_io_handle.rx_param)
+    LCD_DEBUG_PRINT("SPI_tx_param address: %x\n", self->panel_io_handle.tx_param)
+    LCD_DEBUG_PRINT("SPI_tx_color address: %x\n", self->panel_io_handle.tx_color)
+    LCD_DEBUG_PRINT("SPI_allocate_framebuffer address: %x\n", self->panel_io_handle.allocate_framebuffer)
+    LCD_DEBUG_PRINT("SPI_free_framebuffer address: %x\n", self->panel_io_handle.free_framebuffer)
+    LCD_DEBUG_PRINT("SPI_del address: %x\n", self->panel_io_handle.del)
 
     return self->panel_io_handle.get_lane_count(obj, lane_count);
 }

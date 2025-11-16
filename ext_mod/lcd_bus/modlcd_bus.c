@@ -5,7 +5,7 @@
 #include "spi_bus.h"
 #include "i2c_bus.h"
 #include "i80_bus.h"
-//#include "rgb_bus.h"
+#include "rgb_bus.h"
 
 #ifdef MP_PORT_UNIX
     #include "sdl_bus.h"
@@ -31,6 +31,7 @@
 
 mp_obj_t mp_lcd_bus_get_lane_count(size_t n_args, const mp_obj_t *args)
 {
+    LCD_DEBUG_PRINT("Entering mp_lcd_bus_get_lane_count\n")
     uint8_t lane_count;
     mp_lcd_err_t ret = lcd_panel_io_get_lane_count(MP_OBJ_TO_PTR(args[0]), &lane_count);
 
@@ -38,6 +39,7 @@ mp_obj_t mp_lcd_bus_get_lane_count(size_t n_args, const mp_obj_t *args)
         mp_raise_msg_varg(&mp_type_OSError, MP_ERROR_TEXT("%d(lcd_panel_io_init)"), ret);
     }
 
+    LCD_DEBUG_PRINT("Leaving mp_lcd_bus_get_lane_count\n")
     return mp_obj_new_int(lane_count);
 }
 
@@ -46,6 +48,7 @@ MP_DEFINE_CONST_FUN_OBJ_VAR(mp_lcd_bus_get_lane_count_obj, 1, mp_lcd_bus_get_lan
 
 mp_obj_t mp_lcd_bus_init(size_t n_args, const mp_obj_t *pos_args, mp_map_t *kw_args)
 {
+    LCD_DEBUG_PRINT("Entering mp_lcd_bus_init\n")
     enum { ARG_self, ARG_width, ARG_height, ARG_bpp, ARG_buffer_size, ARG_rgb565_byte_swap, ARG_cmd_bits, ARG_param_bits };
     static const mp_arg_t allowed_args[] = {
         { MP_QSTR_self,             MP_ARG_OBJ  | MP_ARG_REQUIRED },
@@ -74,6 +77,7 @@ mp_obj_t mp_lcd_bus_init(size_t n_args, const mp_obj_t *pos_args, mp_map_t *kw_a
     if (ret != 0) {
         mp_raise_msg_varg(&mp_type_OSError, MP_ERROR_TEXT("%d(lcd_panel_io_init)"), ret);
     }
+    LCD_DEBUG_PRINT("Leaving mp_lcd_bus_init\n")
     return mp_const_none;
 }
 
@@ -287,9 +291,7 @@ MP_DEFINE_CONST_DICT(mp_lcd_bus_locals_dict, mp_lcd_bus_locals_dict_table);
 
 static const mp_rom_map_elem_t mp_module_lcd_bus_globals_table[] = {
     { MP_ROM_QSTR(MP_QSTR___name__),           MP_OBJ_NEW_QSTR(MP_QSTR_lcd_bus)        },
-    #ifdef ESP_IDF_VERSION
     { MP_ROM_QSTR(MP_QSTR_RGBBus),             MP_ROM_PTR(&mp_lcd_rgb_bus_type)        },
-    #endif
     { MP_ROM_QSTR(MP_QSTR_SPIBus),             MP_ROM_PTR(&mp_lcd_spi_bus_type)        },
     #ifdef ESP_IDF_VERSION
     { MP_ROM_QSTR(MP_QSTR_I2CBus),             MP_ROM_PTR(&mp_lcd_i2c_bus_type)        },

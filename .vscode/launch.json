@@ -9,9 +9,9 @@
             "name": "Python-Debugger: Aktuelle Datei mit Argumenten",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "make.py",
             //"args": ["esp32", "custom-board-path=../../esp32/ELECROW_DLC35010R", "DISPLAY=ili9488", "INDEV=ft6x36"]
-            "args": ["rp2","BOARD=RPI_PICO2"]
+            "args": ["rp2","BOARD=RPI_PICO2","DISPLAY=ili9341","INDEV=xpt2046"]
         }
     ]
 }

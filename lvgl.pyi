@@ -1,55 +1,56 @@
 from typing import Union, ClassVar, Callable, List, Any, TypedDict, Optional
 
 
-rb_color_t = int
-cover_res_t = int
-font_kerning_t = int
-indev_state_t = int
-result_t = int
-opa_t = int
-draw_sw_mask_res_t = int
-font_glyph_format_t = int
-ctrl_t = int
-str_symbol_t = int
-group_refocus_policy_t = int
-gridnav_ctrl_t = int
-indev_type_t = int
-part_t = int
-type_t = int
-scrollbar_mode_t = int
-flex_align_t = int
-grad_extend_t = int
-flex_flow_t = int
-border_side_t = int
-scroll_snap_t = int
-draw_sw_mask_line_side_t = int
-blend_mode_t = int
-indev_mode_t = int
-base_dir_t = int
-grid_align_t = int
-grad_dir_t = int
-draw_task_type_t = int
-thread_prio_t = int
 color_format_t = int
+result_t = int
+encoding_code128_t = int
+opa_t = int
+part_t = int
+text_align_t = int
+indev_gesture_t = int
+span_overflow_t = int
+indev_type_t = int
 flags_t = int
-fs_mode_t = int
-style_res_t = int
-state_t = int
+text_flag_t = int
+flag_t = int
+blend_mode_t = int
+font_kerning_t = int
+scroll_snap_t = int
+grid_align_t = int
+display_render_mode_t = int
+display_rotation_t = int
+screen_load_anim_t = int
+orientation_t = int
+gridnav_ctrl_t = int
+rb_color_t = int
+flex_flow_t = int
+str_symbol_t = int
+type_t = int
+style_state_cmp_t = int
+scrollbar_mode_t = int
+grad_dir_t = int
+mode_t = int
+base_dir_t = int
+cover_res_t = int
+ctrl_t = int
+indev_state_t = int
 dir_t = int
+span_mode_t = int
+fs_res_t = int
+style_res_t = int
+indev_mode_t = int
+flex_align_t = int
+group_refocus_policy_t = int
+align_t = int
+state_t = int
 text_decor_t = int
 palette_t = int
-display_rotation_t = int
-text_flag_t = int
-align_t = int
-span_mode_t = int
-mode_t = int
-orientation_t = int
-text_align_t = int
-flag_t = int
-display_render_mode_t = int
-fs_res_t = int
-span_overflow_t = int
-style_state_cmp_t = int
+border_side_t = int
+draw_task_type_t = int
+fs_mode_t = int
+grad_extend_t = int
+font_glyph_format_t = int
+long_mode_t = int
 style_prop_t = int
 grad_color_t = int
 event_code_t = int
@@ -126,7 +127,11 @@ DROPDOWN_POS_LAST: int = ...
 SCALE_TOTAL_TICK_COUNT_DEFAULT: int = ...
 SCALE_MAJOR_TICK_EVERY_DEFAULT: int = ...
 SCALE_LABEL_ENABLED_DEFAULT: int = ...
+SCALE_LABEL_ROTATE_MATCH_TICKS: int = ...
+SCALE_LABEL_ROTATE_KEEP_UPRIGHT: int = ...
+SCALE_ROTATION_ANGLE_MASK: int = ...
 TEXTAREA_CURSOR_LAST: int = ...
+PART_TEXTAREA_PLACEHOLDER: int = ...
 TABLE_CELL_NONE: int = ...
 
 
@@ -167,6 +172,14 @@ class OPA(object):
     _90: ClassVar[int] = ...
     _100: ClassVar[int] = ...
     COVER: ClassVar[int] = ...
+
+
+class TREE_WALK(object):
+    """
+    No Docstrings Yet
+    """
+    PRE_ORDER: ClassVar[int] = ...
+    POST_ORDER: ClassVar[int] = ...
 
 
 class STR_SYMBOL(object):
@@ -253,6 +266,8 @@ class STYLE(object):
     Y: ClassVar[int] = ...
     ALIGN: ClassVar[int] = ...
     RADIUS: ClassVar[int] = ...
+    RADIAL_OFFSET: ClassVar[int] = ...
+    PAD_RADIAL: ClassVar[int] = ...
     PAD_TOP: ClassVar[int] = ...
     PAD_BOTTOM: ClassVar[int] = ...
     PAD_LEFT: ClassVar[int] = ...
@@ -316,6 +331,9 @@ class STYLE(object):
     TEXT_LINE_SPACE: ClassVar[int] = ...
     TEXT_DECOR: ClassVar[int] = ...
     TEXT_ALIGN: ClassVar[int] = ...
+    TEXT_OUTLINE_STROKE_WIDTH: ClassVar[int] = ...
+    TEXT_OUTLINE_STROKE_OPA: ClassVar[int] = ...
+    TEXT_OUTLINE_STROKE_COLOR: ClassVar[int] = ...
     OPA: ClassVar[int] = ...
     OPA_LAYERED: ClassVar[int] = ...
     COLOR_FILTER_DSC: ClassVar[int] = ...
@@ -337,6 +355,9 @@ class STYLE(object):
     TRANSFORM_SKEW_Y: ClassVar[int] = ...
     BITMAP_MASK_SRC: ClassVar[int] = ...
     ROTARY_SENSITIVITY: ClassVar[int] = ...
+    TRANSLATE_RADIAL: ClassVar[int] = ...
+    RECOLOR: ClassVar[int] = ...
+    RECOLOR_OPA: ClassVar[int] = ...
     FLEX_FLOW: ClassVar[int] = ...
     FLEX_MAIN_PLACE: ClassVar[int] = ...
     FLEX_CROSS_PLACE: ClassVar[int] = ...
@@ -352,52 +373,11 @@ class STYLE(object):
     GRID_CELL_ROW_POS: ClassVar[int] = ...
     GRID_CELL_ROW_SPAN: ClassVar[int] = ...
     GRID_CELL_Y_ALIGN: ClassVar[int] = ...
+    IMAGE_COLORKEY: ClassVar[int] = ...
     LAST_BUILT_IN_PROP: ClassVar[int] = ...
     NUM_BUILT_IN_PROPS: ClassVar[int] = ...
     PROP_ANY: ClassVar[int] = ...
     PROP_CONST: ClassVar[int] = ...
-
-
-class STATE(object):
-    """
-    No Docstrings Yet
-    """
-    DEFAULT: ClassVar[int] = ...
-    CHECKED: ClassVar[int] = ...
-    FOCUSED: ClassVar[int] = ...
-    FOCUS_KEY: ClassVar[int] = ...
-    EDITED: ClassVar[int] = ...
-    HOVERED: ClassVar[int] = ...
-    PRESSED: ClassVar[int] = ...
-    SCROLLED: ClassVar[int] = ...
-    DISABLED: ClassVar[int] = ...
-    USER_1: ClassVar[int] = ...
-    USER_2: ClassVar[int] = ...
-    USER_3: ClassVar[int] = ...
-    USER_4: ClassVar[int] = ...
-    ANY: ClassVar[int] = ...
-
-
-class PART(object):
-    """
-    No Docstrings Yet
-    """
-    MAIN: ClassVar[int] = ...
-    SCROLLBAR: ClassVar[int] = ...
-    INDICATOR: ClassVar[int] = ...
-    KNOB: ClassVar[int] = ...
-    SELECTED: ClassVar[int] = ...
-    ITEMS: ClassVar[int] = ...
-    CURSOR: ClassVar[int] = ...
-    CUSTOM_FIRST: ClassVar[int] = ...
-    ANY: ClassVar[int] = ...
-
-
-class PART_TEXTAREA(object):
-    """
-    No Docstrings Yet
-    """
-    PLACEHOLDER: ClassVar[int] = ...
 
 
 class RESULT(object):
@@ -406,14 +386,6 @@ class RESULT(object):
     """
     INVALID: ClassVar[int] = ...
     OK: ClassVar[int] = ...
-
-
-class ANIM(object):
-    """
-    No Docstrings Yet
-    """
-    OFF: ClassVar[int] = ...
-    ON: ClassVar[int] = ...
 
 
 class RB_COLOR(object):
@@ -483,12 +455,17 @@ class COLOR_FORMAT(object):
     ARGB8565: ClassVar[int] = ...
     RGB565A8: ClassVar[int] = ...
     AL88: ClassVar[int] = ...
+    RGB565_SWAPPED: ClassVar[int] = ...
     RGB888: ClassVar[int] = ...
     ARGB8888: ClassVar[int] = ...
     XRGB8888: ClassVar[int] = ...
+    ARGB8888_PREMULTIPLIED: ClassVar[int] = ...
     A1: ClassVar[int] = ...
     A2: ClassVar[int] = ...
     A4: ClassVar[int] = ...
+    ARGB1555: ClassVar[int] = ...
+    ARGB4444: ClassVar[int] = ...
+    ARGB2222: ClassVar[int] = ...
     YUV_START: ClassVar[int] = ...
     I420: ClassVar[int] = ...
     I422: ClassVar[int] = ...
@@ -499,6 +476,15 @@ class COLOR_FORMAT(object):
     YUY2: ClassVar[int] = ...
     UYVY: ClassVar[int] = ...
     YUV_END: ClassVar[int] = ...
+    PROPRIETARY_START: ClassVar[int] = ...
+    NEMA_TSC_START: ClassVar[int] = ...
+    NEMA_TSC4: ClassVar[int] = ...
+    NEMA_TSC6: ClassVar[int] = ...
+    NEMA_TSC6A: ClassVar[int] = ...
+    NEMA_TSC6AP: ClassVar[int] = ...
+    NEMA_TSC12: ClassVar[int] = ...
+    NEMA_TSC12A: ClassVar[int] = ...
+    NEMA_TSC_END: ClassVar[int] = ...
     NATIVE: ClassVar[int] = ...
     NATIVE_WITH_ALPHA: ClassVar[int] = ...
 
@@ -530,27 +516,6 @@ class PALETTE(object):
     NONE: ClassVar[int] = ...
 
 
-class THREAD_PRIO(object):
-    """
-    No Docstrings Yet
-    """
-    LOWEST: ClassVar[int] = ...
-    LOW: ClassVar[int] = ...
-    MID: ClassVar[int] = ...
-    HIGH: ClassVar[int] = ...
-    HIGHEST: ClassVar[int] = ...
-
-
-class CACHE_RESERVE_COND(object):
-    """
-    No Docstrings Yet
-    """
-    OK: ClassVar[int] = ...
-    TOO_LARGE: ClassVar[int] = ...
-    NEED_VICTIM: ClassVar[int] = ...
-    ERROR: ClassVar[int] = ...
-
-
 class FONT_GLYPH_FORMAT(object):
     """
     No Docstrings Yet
@@ -558,6 +523,7 @@ class FONT_GLYPH_FORMAT(object):
     NONE: ClassVar[int] = ...
     A1: ClassVar[int] = ...
     A2: ClassVar[int] = ...
+    A3: ClassVar[int] = ...
     A4: ClassVar[int] = ...
     A8: ClassVar[int] = ...
     IMAGE: ClassVar[int] = ...
@@ -592,6 +558,7 @@ class TEXT_FLAG(object):
     EXPAND: ClassVar[int] = ...
     FIT: ClassVar[int] = ...
     BREAK_ALL: ClassVar[int] = ...
+    RECOLOR: ClassVar[int] = ...
 
 
 class TEXT_ALIGN(object):
@@ -613,6 +580,27 @@ class BASE_DIR(object):
     AUTO: ClassVar[int] = ...
     NEUTRAL: ClassVar[int] = ...
     WEAK: ClassVar[int] = ...
+
+
+class GRAD_DIR(object):
+    """
+    No Docstrings Yet
+    """
+    NONE: ClassVar[int] = ...
+    VER: ClassVar[int] = ...
+    HOR: ClassVar[int] = ...
+    LINEAR: ClassVar[int] = ...
+    RADIAL: ClassVar[int] = ...
+    CONICAL: ClassVar[int] = ...
+
+
+class GRAD_EXTEND(object):
+    """
+    No Docstrings Yet
+    """
+    PAD: ClassVar[int] = ...
+    REPEAT: ClassVar[int] = ...
+    REFLECT: ClassVar[int] = ...
 
 
 class LAYOUT(object):
@@ -672,6 +660,7 @@ class BLEND_MODE(object):
     ADDITIVE: ClassVar[int] = ...
     SUBTRACTIVE: ClassVar[int] = ...
     MULTIPLY: ClassVar[int] = ...
+    DIFFERENCE: ClassVar[int] = ...
 
 
 class TEXT_DECOR(object):
@@ -696,27 +685,6 @@ class BORDER_SIDE(object):
     INTERNAL: ClassVar[int] = ...
 
 
-class GRAD_DIR(object):
-    """
-    No Docstrings Yet
-    """
-    NONE: ClassVar[int] = ...
-    VER: ClassVar[int] = ...
-    HOR: ClassVar[int] = ...
-    LINEAR: ClassVar[int] = ...
-    RADIAL: ClassVar[int] = ...
-    CONICAL: ClassVar[int] = ...
-
-
-class GRAD_EXTEND(object):
-    """
-    No Docstrings Yet
-    """
-    PAD: ClassVar[int] = ...
-    REPEAT: ClassVar[int] = ...
-    REFLECT: ClassVar[int] = ...
-
-
 class STYLE_RES(object):
     """
     No Docstrings Yet
@@ -734,6 +702,9 @@ class EVENT(object):
     PRESSING: ClassVar[int] = ...
     PRESS_LOST: ClassVar[int] = ...
     SHORT_CLICKED: ClassVar[int] = ...
+    SINGLE_CLICKED: ClassVar[int] = ...
+    DOUBLE_CLICKED: ClassVar[int] = ...
+    TRIPLE_CLICKED: ClassVar[int] = ...
     LONG_PRESSED: ClassVar[int] = ...
     LONG_PRESSED_REPEAT: ClassVar[int] = ...
     CLICKED: ClassVar[int] = ...
@@ -792,8 +763,116 @@ class EVENT(object):
     FLUSH_WAIT_START: ClassVar[int] = ...
     FLUSH_WAIT_FINISH: ClassVar[int] = ...
     VSYNC: ClassVar[int] = ...
+    VSYNC_REQUEST: ClassVar[int] = ...
     LAST: ClassVar[int] = ...
     PREPROCESS: ClassVar[int] = ...
+    MARKED_DELETING: ClassVar[int] = ...
+
+
+class DISPLAY_ROTATION(object):
+    """
+    No Docstrings Yet
+    """
+    _0: ClassVar[int] = ...
+    _90: ClassVar[int] = ...
+    _180: ClassVar[int] = ...
+    _270: ClassVar[int] = ...
+
+
+class DISPLAY_RENDER_MODE(object):
+    """
+    No Docstrings Yet
+    """
+    PARTIAL: ClassVar[int] = ...
+    DIRECT: ClassVar[int] = ...
+    FULL: ClassVar[int] = ...
+
+
+class SCREEN_LOAD_ANIM(object):
+    """
+    No Docstrings Yet
+    """
+    NONE: ClassVar[int] = ...
+    OVER_LEFT: ClassVar[int] = ...
+    OVER_RIGHT: ClassVar[int] = ...
+    OVER_TOP: ClassVar[int] = ...
+    OVER_BOTTOM: ClassVar[int] = ...
+    MOVE_LEFT: ClassVar[int] = ...
+    MOVE_RIGHT: ClassVar[int] = ...
+    MOVE_TOP: ClassVar[int] = ...
+    MOVE_BOTTOM: ClassVar[int] = ...
+    FADE_IN: ClassVar[int] = ...
+    FADE_ON: ClassVar[int] = ...
+    FADE_OUT: ClassVar[int] = ...
+    OUT_LEFT: ClassVar[int] = ...
+    OUT_RIGHT: ClassVar[int] = ...
+    OUT_TOP: ClassVar[int] = ...
+    OUT_BOTTOM: ClassVar[int] = ...
+
+
+class SCROLLBAR_MODE(object):
+    """
+    No Docstrings Yet
+    """
+    OFF: ClassVar[int] = ...
+    ON: ClassVar[int] = ...
+    ACTIVE: ClassVar[int] = ...
+    AUTO: ClassVar[int] = ...
+
+
+class SCROLL_SNAP(object):
+    """
+    No Docstrings Yet
+    """
+    NONE: ClassVar[int] = ...
+    START: ClassVar[int] = ...
+    END: ClassVar[int] = ...
+    CENTER: ClassVar[int] = ...
+
+
+class STATE(object):
+    """
+    No Docstrings Yet
+    """
+    DEFAULT: ClassVar[int] = ...
+    CHECKED: ClassVar[int] = ...
+    FOCUSED: ClassVar[int] = ...
+    FOCUS_KEY: ClassVar[int] = ...
+    EDITED: ClassVar[int] = ...
+    HOVERED: ClassVar[int] = ...
+    PRESSED: ClassVar[int] = ...
+    SCROLLED: ClassVar[int] = ...
+    DISABLED: ClassVar[int] = ...
+    USER_1: ClassVar[int] = ...
+    USER_2: ClassVar[int] = ...
+    USER_3: ClassVar[int] = ...
+    USER_4: ClassVar[int] = ...
+    ANY: ClassVar[int] = ...
+
+
+class PART(object):
+    """
+    No Docstrings Yet
+    """
+    MAIN: ClassVar[int] = ...
+    SCROLLBAR: ClassVar[int] = ...
+    INDICATOR: ClassVar[int] = ...
+    KNOB: ClassVar[int] = ...
+    SELECTED: ClassVar[int] = ...
+    ITEMS: ClassVar[int] = ...
+    CURSOR: ClassVar[int] = ...
+    CUSTOM_FIRST: ClassVar[int] = ...
+    ANY: ClassVar[int] = ...
+
+
+class STYLE_STATE_CMP(object):
+    """
+    No Docstrings Yet
+    """
+    SAME: ClassVar[int] = ...
+    DIFF_REDRAW: ClassVar[int] = ...
+    DIFF_DRAW_PAD: ClassVar[int] = ...
+    DIFF_LAYOUT: ClassVar[int] = ...
 
 
 class FS_RES(object):
@@ -840,6 +919,7 @@ class DRAW_TASK_TYPE(object):
     FILL: ClassVar[int] = ...
     BORDER: ClassVar[int] = ...
     BOX_SHADOW: ClassVar[int] = ...
+    LETTER: ClassVar[int] = ...
     LABEL: ClassVar[int] = ...
     IMAGE: ClassVar[int] = ...
     LAYER: ClassVar[int] = ...
@@ -848,88 +928,17 @@ class DRAW_TASK_TYPE(object):
     TRIANGLE: ClassVar[int] = ...
     MASK_RECTANGLE: ClassVar[int] = ...
     MASK_BITMAP: ClassVar[int] = ...
-    VECTOR: ClassVar[int] = ...
 
 
 class DRAW_TASK_STATE(object):
     """
     No Docstrings Yet
     """
+    BLOCKED: ClassVar[int] = ...
     WAITING: ClassVar[int] = ...
     QUEUED: ClassVar[int] = ...
     IN_PROGRESS: ClassVar[int] = ...
-    READY: ClassVar[int] = ...
-
-
-class DISPLAY_ROTATION(object):
-    """
-    No Docstrings Yet
-    """
-    _0: ClassVar[int] = ...
-    _90: ClassVar[int] = ...
-    _180: ClassVar[int] = ...
-    _270: ClassVar[int] = ...
-
-
-class DISPLAY_RENDER_MODE(object):
-    """
-    No Docstrings Yet
-    """
-    PARTIAL: ClassVar[int] = ...
-    DIRECT: ClassVar[int] = ...
-    FULL: ClassVar[int] = ...
-
-
-class SCR_LOAD_ANIM(object):
-    """
-    No Docstrings Yet
-    """
-    NONE: ClassVar[int] = ...
-    OVER_LEFT: ClassVar[int] = ...
-    OVER_RIGHT: ClassVar[int] = ...
-    OVER_TOP: ClassVar[int] = ...
-    OVER_BOTTOM: ClassVar[int] = ...
-    MOVE_LEFT: ClassVar[int] = ...
-    MOVE_RIGHT: ClassVar[int] = ...
-    MOVE_TOP: ClassVar[int] = ...
-    MOVE_BOTTOM: ClassVar[int] = ...
-    FADE_IN: ClassVar[int] = ...
-    FADE_ON: ClassVar[int] = ...
-    FADE_OUT: ClassVar[int] = ...
-    OUT_LEFT: ClassVar[int] = ...
-    OUT_RIGHT: ClassVar[int] = ...
-    OUT_TOP: ClassVar[int] = ...
-    OUT_BOTTOM: ClassVar[int] = ...
-
-
-class SCROLLBAR_MODE(object):
-    """
-    No Docstrings Yet
-    """
-    OFF: ClassVar[int] = ...
-    ON: ClassVar[int] = ...
-    ACTIVE: ClassVar[int] = ...
-    AUTO: ClassVar[int] = ...
-
-
-class SCROLL_SNAP(object):
-    """
-    No Docstrings Yet
-    """
-    NONE: ClassVar[int] = ...
-    START: ClassVar[int] = ...
-    END: ClassVar[int] = ...
-    CENTER: ClassVar[int] = ...
-
-
-class STYLE_STATE_CMP(object):
-    """
-    No Docstrings Yet
-    """
-    SAME: ClassVar[int] = ...
-    DIFF_REDRAW: ClassVar[int] = ...
-    DIFF_DRAW_PAD: ClassVar[int] = ...
-    DIFF_LAYOUT: ClassVar[int] = ...
+    FINISHED: ClassVar[int] = ...
 
 
 class LAYER_TYPE(object):
@@ -995,6 +1004,19 @@ class INDEV_MODE(object):
     EVENT: ClassVar[int] = ...
 
 
+class INDEV_GESTURE(object):
+    """
+    No Docstrings Yet
+    """
+    NONE: ClassVar[int] = ...
+    PINCH: ClassVar[int] = ...
+    SWIPE: ClassVar[int] = ...
+    ROTATE: ClassVar[int] = ...
+    TWO_FINGERS_SWIPE: ClassVar[int] = ...
+    SCROLL: ClassVar[int] = ...
+    CNT: ClassVar[int] = ...
+
+
 class COVER_RES(object):
     """
     No Docstrings Yet
@@ -1023,6 +1045,20 @@ class FONT_FMT_TXT(object):
     COMPRESSED_NO_PREFILTER: ClassVar[int] = ...
 
 
+class SUBJECT_TYPE(object):
+    """
+    No Docstrings Yet
+    """
+    INVALID: ClassVar[int] = ...
+    NONE: ClassVar[int] = ...
+    INT: ClassVar[int] = ...
+    FLOAT: ClassVar[int] = ...
+    POINTER: ClassVar[int] = ...
+    COLOR: ClassVar[int] = ...
+    GROUP: ClassVar[int] = ...
+    STRING: ClassVar[int] = ...
+
+
 class ANIM_IMAGE_PART(object):
     """
     No Docstrings Yet
@@ -1049,19 +1085,6 @@ class SPAN_MODE(object):
     LAST: ClassVar[int] = ...
 
 
-class SUBJECT_TYPE(object):
-    """
-    No Docstrings Yet
-    """
-    INVALID: ClassVar[int] = ...
-    NONE: ClassVar[int] = ...
-    INT: ClassVar[int] = ...
-    POINTER: ClassVar[int] = ...
-    COLOR: ClassVar[int] = ...
-    GROUP: ClassVar[int] = ...
-    STRING: ClassVar[int] = ...
-
-
 class GRIDNAV_CTRL(object):
     """
     No Docstrings Yet
@@ -1071,37 +1094,6 @@ class GRIDNAV_CTRL(object):
     SCROLL_FIRST: ClassVar[int] = ...
     HORIZONTAL_MOVE_ONLY: ClassVar[int] = ...
     VERTICAL_MOVE_ONLY: ClassVar[int] = ...
-
-
-class DRAW_SW_MASK_RES(object):
-    """
-    No Docstrings Yet
-    """
-    TRANSP: ClassVar[int] = ...
-    FULL_COVER: ClassVar[int] = ...
-    CHANGED: ClassVar[int] = ...
-    UNKNOWN: ClassVar[int] = ...
-
-
-class DRAW_SW_MASK_TYPE(object):
-    """
-    No Docstrings Yet
-    """
-    LINE: ClassVar[int] = ...
-    ANGLE: ClassVar[int] = ...
-    RADIUS: ClassVar[int] = ...
-    FADE: ClassVar[int] = ...
-    MAP: ClassVar[int] = ...
-
-
-class DRAW_SW_MASK_LINE_SIDE(object):
-    """
-    No Docstrings Yet
-    """
-    LEFT: ClassVar[int] = ...
-    RIGHT: ClassVar[int] = ...
-    TOP: ClassVar[int] = ...
-    BOTTOM: ClassVar[int] = ...
 
 
 class SYMBOL(object):
@@ -1272,6 +1264,12 @@ class color_t(object):
 
     __SIZE__: ClassVar[int] = ...
 
+    def is_in_range(self, l_color: "color_t", h_color: "color_t", /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def to_32(self, opa: "opa_t", /) -> "color32_t":
         """
         No Docstrings Yet
@@ -1384,10 +1382,12 @@ class color_t(object):
 
 
 class _grad_dsc_t_type(TypedDict, total=False):
-    stops: List["gradient_stop_t"] = ...
+    stops: List["grad_stop_t"] = ...
     stops_count: int = ...
     dir: "grad_dir_t" = ...
     extend: "grad_extend_t" = ...
+    params: "grad_dsc_params_t" = ...
+    state: Any = ...
 
 
 
@@ -1403,33 +1403,57 @@ class grad_dsc_t(object):
 
     __SIZE__: ClassVar[int] = ...
 
-    def gradient_color_calculate(self, range: int, frac: int, color_out: "grad_color_t", opa_out: "opa_t", /) -> None:
+    def init_stops(self, colors: List["color_t"], opa: List["opa_t"], fracs: List[int], num_stops: int, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def gradient_get(self, w: int, h: int, /) -> "grad_t":
+    def horizontal_init(self, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def gradient_init_stops(self, colors: List["color_t"], opa: List["opa_t"], fracs: List[int], num_stops: int, /) -> None:
+    def vertical_init(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def linear_init(self, from_x: int, from_y: int, to_x: int, to_y: int, extend: "grad_extend_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def radial_init(self, from_x: int, from_y: int, to_x: int, to_y: int, extend: "grad_extend_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def radial_set_focal(self, center_x: int, center_y: int, radius: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def conical_init(self, from_x: int, from_y: int, to_x: int, to_y: int, extend: "grad_extend_t", /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
     @property
-    def stops(self) -> List["gradient_stop_t"]:
+    def stops(self) -> List["grad_stop_t"]:
        """
        No Docstrings Yet
        """ 
        ...
 
     @stops.setter
-    def stops(self, value: List["gradient_stop_t"]) -> None:
+    def stops(self, value: List["grad_stop_t"]) -> None:
         """
         No Docstrings Yet
         """
@@ -1477,21 +1501,49 @@ class grad_dsc_t(object):
         """
         ...
 
+    @property
+    def params(self) -> "grad_dsc_params_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @params.setter
+    def params(self, value: "grad_dsc_params_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def state(self) -> Any:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @state.setter
+    def state(self, value: Any) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
 
 
 
-class _gradient_stop_t_type(TypedDict, total=False):
+
+class _grad_stop_t_type(TypedDict, total=False):
     color: "color_t" = ...
     opa: "opa_t" = ...
     frac: int = ...
 
 
 
-class gradient_stop_t(object):
+class grad_stop_t(object):
     """
     No Docstrings Yet
     """
-    def __init__(self, args: Optional[_gradient_stop_t_type] = dict(), /) -> "gradient_stop_t":
+    def __init__(self, args: Optional[_grad_stop_t_type] = dict(), /) -> "grad_stop_t":
         """
         No Docstrings Yet
         """
@@ -1544,11 +1596,347 @@ class gradient_stop_t(object):
 
 
 
+class _grad_dsc_params_t_type(TypedDict, total=False):
+    linear: "grad_dsc_params_linear_t" = ...
+    radial: "grad_dsc_params_radial_t" = ...
+    conical: "grad_dsc_params_conical_t" = ...
+
+
+
+class grad_dsc_params_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_grad_dsc_params_t_type] = dict(), /) -> "grad_dsc_params_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    @property
+    def linear(self) -> "grad_dsc_params_linear_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @linear.setter
+    def linear(self, value: "grad_dsc_params_linear_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def radial(self) -> "grad_dsc_params_radial_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @radial.setter
+    def radial(self, value: "grad_dsc_params_radial_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def conical(self) -> "grad_dsc_params_conical_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @conical.setter
+    def conical(self, value: "grad_dsc_params_conical_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
+class _grad_dsc_params_linear_t_type(TypedDict, total=False):
+    start: "point_t" = ...
+    end: "point_t" = ...
+
+
+
+class grad_dsc_params_linear_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_grad_dsc_params_linear_t_type] = dict(), /) -> "grad_dsc_params_linear_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    @property
+    def start(self) -> "point_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @start.setter
+    def start(self, value: "point_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def end(self) -> "point_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @end.setter
+    def end(self, value: "point_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
+class _point_t_type(TypedDict, total=False):
+    x: int = ...
+    y: int = ...
+
+
+
+class point_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_point_t_type] = dict(), /) -> "point_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    def transform(self, angle: int, scale_x: int, scale_y: int, pivot: "point_t", zoom_first: bool, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def array_transform(self, count: int, angle: int, scale_x: int, scale_y: int, pivot: "point_t", zoom_first: bool, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def to_precise(self, /) -> "point_precise_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set(self, x: int, y: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def swap(self, p2: "point_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    @property
+    def x(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @x.setter
+    def x(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def y(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @y.setter
+    def y(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
+class _grad_dsc_params_radial_t_type(TypedDict, total=False):
+    focal: "point_t" = ...
+    focal_extent: "point_t" = ...
+    end: "point_t" = ...
+    end_extent: "point_t" = ...
+
+
+
+class grad_dsc_params_radial_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_grad_dsc_params_radial_t_type] = dict(), /) -> "grad_dsc_params_radial_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    @property
+    def focal(self) -> "point_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @focal.setter
+    def focal(self, value: "point_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def focal_extent(self) -> "point_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @focal_extent.setter
+    def focal_extent(self, value: "point_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def end(self) -> "point_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @end.setter
+    def end(self, value: "point_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def end_extent(self) -> "point_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @end_extent.setter
+    def end_extent(self, value: "point_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
+class _grad_dsc_params_conical_t_type(TypedDict, total=False):
+    center: "point_t" = ...
+    start_angle: int = ...
+    end_angle: int = ...
+
+
+
+class grad_dsc_params_conical_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_grad_dsc_params_conical_t_type] = dict(), /) -> "grad_dsc_params_conical_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    @property
+    def center(self) -> "point_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @center.setter
+    def center(self, value: "point_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def start_angle(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @start_angle.setter
+    def start_angle(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def end_angle(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @end_angle.setter
+    def end_angle(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
 class _font_t_type(TypedDict, total=False):
     line_height: int = ...
     base_line: int = ...
     subpx: int = ...
     kerning: int = ...
+    static_bitmap: int = ...
     underline_position: int = ...
     underline_thickness: int = ...
     dsc: Any = ...
@@ -1588,6 +1976,12 @@ class font_t(object):
         ...
     
     def set_kerning(self, kerning: "font_kerning_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def has_static_bitmap(self, /) -> bool:
         """
         No Docstrings Yet
         """
@@ -1650,6 +2044,20 @@ class font_t(object):
 
     @kerning.setter
     def kerning(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def static_bitmap(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @static_bitmap.setter
+    def static_bitmap(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -1735,8 +2143,11 @@ class _font_glyph_dsc_t_type(TypedDict, total=False):
     box_h: int = ...
     ofs_x: int = ...
     ofs_y: int = ...
+    stride: int = ...
     format: "font_glyph_format_t" = ...
     is_placeholder: int = ...
+    req_raw_bitmap: int = ...
+    outline_stroke_width: int = ...
     gid: "font_glyph_dsc_gid_t" = ...
     entry: "cache_entry_t" = ...
 
@@ -1755,6 +2166,12 @@ class font_glyph_dsc_t(object):
     __SIZE__: ClassVar[int] = ...
 
     def get_glyph_bitmap(self, arg0: "draw_buf_t", /) -> Any:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_glyph_static_bitmap(self, /) -> Any:
         """
         No Docstrings Yet
         """
@@ -1857,6 +2274,20 @@ class font_glyph_dsc_t(object):
         ...
 
     @property
+    def stride(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @stride.setter
+    def stride(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
     def format(self) -> "font_glyph_format_t":
        """
        No Docstrings Yet
@@ -1879,6 +2310,34 @@ class font_glyph_dsc_t(object):
 
     @is_placeholder.setter
     def is_placeholder(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def req_raw_bitmap(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @req_raw_bitmap.setter
+    def req_raw_bitmap(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def outline_stroke_width(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @outline_stroke_width.setter
+    def outline_stroke_width(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -1964,6 +2423,25 @@ class font_glyph_dsc_gid_t(object):
 
 
 
+class _cache_entry_t_type(TypedDict, total=False):
+    ...
+
+
+
+class cache_entry_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_cache_entry_t_type] = dict(), /) -> "cache_entry_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
+
 class _draw_buf_t_type(TypedDict, total=False):
     header: "image" = ...
     data_size: int = ...
@@ -2003,12 +2481,6 @@ class draw_buf_t(object):
         """
         ...
     
-    def copy(self, dest_area: "area_t", src: "draw_buf_t", src_area: "area_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
     def dup(self, /) -> "draw_buf_t":
         """
         No Docstrings Yet
@@ -2028,6 +2500,12 @@ class draw_buf_t(object):
         ...
     
     def destroy(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def copy(self, dest_area: "area_t", src: "draw_buf_t", src_area: "area_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -2069,7 +2547,7 @@ class draw_buf_t(object):
         """
         ...
     
-    def from_image(self, img: "image", /) -> None:
+    def from_image(self, img: "image", /) -> "result_t":
         """
         No Docstrings Yet
         """
@@ -2187,7 +2665,7 @@ class draw_buf_handlers_t(object):
         """
         ...
     
-    def init(self, buf_malloc_cb: "draw_buf_malloc_cb", buf_free_cb: "draw_buf_free_cb", align_pointer_cb: "draw_buf_align_cb", invalidate_cache_cb: "draw_buf_cache_operation_cb", flush_cache_cb: "draw_buf_cache_operation_cb", width_to_stride_cb: "draw_buf_width_to_stride_cb", /) -> None:
+    def init(self, buf_malloc_cb: "draw_buf_malloc_cb_t", buf_free_cb: "draw_buf_free_cb_t", buf_copy_cb: "draw_buf_copy_cb_t", align_pointer_cb: "draw_buf_align_cb_t", invalidate_cache_cb: "draw_buf_cache_operation_cb_t", flush_cache_cb: "draw_buf_cache_operation_cb_t", width_to_stride_cb: "draw_buf_width_to_stride_cb_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -2268,13 +2746,16 @@ class _anim_t_type(TypedDict, total=False):
     end_value: int = ...
     duration: int = ...
     act_time: int = ...
-    playback_delay: int = ...
-    playback_duration: int = ...
+    reverse_delay: int = ...
+    reverse_duration: int = ...
     repeat_delay: int = ...
     repeat_cnt: int = ...
     parameter: "anim_parameter_t" = ...
     last_timer_run: int = ...
-    playback_now: int = ...
+    pause_time: int = ...
+    pause_duration: int = ...
+    is_paused: int = ...
+    reverse_play_in_progress: int = ...
     run_round: int = ...
     start_cb_called: int = ...
     early_apply: int = ...
@@ -2317,13 +2798,31 @@ class anim_t(object):
         """
         ...
     
-    def set_time(self, duration: int, /) -> None:
+    def set_delay(self, duration: int, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def set_delay(self, duration: int, /) -> None:
+    def resume(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def pause(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def pause_for(self, duration: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def is_paused(self, /) -> bool:
         """
         No Docstrings Yet
         """
@@ -2371,19 +2870,19 @@ class anim_t(object):
         """
         ...
     
-    def set_playback_duration(self, duration: int, /) -> None:
+    def set_reverse_duration(self, duration: int, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def set_playback_time(self, duration: int, /) -> None:
+    def set_reverse_time(self, duration: int, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def set_playback_delay(self, duration: int, /) -> None:
+    def set_reverse_delay(self, duration: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -2614,28 +3113,28 @@ class anim_t(object):
         ...
 
     @property
-    def playback_delay(self) -> int:
+    def reverse_delay(self) -> int:
        """
        No Docstrings Yet
        """ 
        ...
 
-    @playback_delay.setter
-    def playback_delay(self, value: int) -> None:
+    @reverse_delay.setter
+    def reverse_delay(self, value: int) -> None:
         """
         No Docstrings Yet
         """
         ...
 
     @property
-    def playback_duration(self) -> int:
+    def reverse_duration(self) -> int:
        """
        No Docstrings Yet
        """ 
        ...
 
-    @playback_duration.setter
-    def playback_duration(self, value: int) -> None:
+    @reverse_duration.setter
+    def reverse_duration(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -2698,14 +3197,56 @@ class anim_t(object):
         ...
 
     @property
-    def playback_now(self) -> int:
+    def pause_time(self) -> int:
        """
        No Docstrings Yet
        """ 
        ...
 
-    @playback_now.setter
-    def playback_now(self, value: int) -> None:
+    @pause_time.setter
+    def pause_time(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def pause_duration(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @pause_duration.setter
+    def pause_duration(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def is_paused(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @is_paused.setter
+    def is_paused(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def reverse_play_in_progress(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @reverse_play_in_progress.setter
+    def reverse_play_in_progress(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -2969,12 +3510,6 @@ class display_t(object):
         """
         ...
 
-    def draw_dispatch_layer(self, layer: "layer_t", /) -> bool:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
     def delete(self, /) -> None:
         """
         No Docstrings Yet
@@ -3017,6 +3552,12 @@ class display_t(object):
         """
         ...
     
+    def set_matrix_rotation(self, enable: bool, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_dpi(self, dpi: int, /) -> None:
         """
         No Docstrings Yet
@@ -3030,6 +3571,18 @@ class display_t(object):
         ...
     
     def get_vertical_resolution(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_original_horizontal_resolution(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_original_vertical_resolution(self, /) -> int:
         """
         No Docstrings Yet
         """
@@ -3065,6 +3618,12 @@ class display_t(object):
         """
         ...
     
+    def get_matrix_rotation(self, /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def get_dpi(self, /) -> int:
         """
         No Docstrings Yet
@@ -3077,7 +3636,19 @@ class display_t(object):
         """
         ...
     
+    def set_buffers_with_stride(self, buf1: Any, buf2: Any, buf_size: int, stride: int, render_mode: "display_render_mode_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_draw_buffers(self, buf1: "draw_buf_t", buf2: "draw_buf_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_3rd_draw_buffer(self, buf3: "draw_buf_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -3113,7 +3684,19 @@ class display_t(object):
         """
         ...
     
-    def set_antialiasing(self, en: bool, /) -> None:
+    def set_tile_cnt(self, tile_cnt: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_tile_cnt(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_antialiasing(self, enable: bool, /) -> None:
         """
         No Docstrings Yet
         """
@@ -3150,6 +3733,12 @@ class display_t(object):
         ...
     
     def get_screen_prev(self, /) -> "obj":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_screen_loading(self, /) -> "obj":
         """
         No Docstrings Yet
         """
@@ -3233,7 +3822,7 @@ class display_t(object):
         """
         ...
     
-    def enable_invalidation(self, en: bool, /) -> None:
+    def enable_invalidation(self, enable: bool, /) -> None:
         """
         No Docstrings Yet
         """
@@ -3252,6 +3841,24 @@ class display_t(object):
         ...
     
     def delete_refr_timer(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def register_vsync_event(self, event_cb: Callable, disp: "display_t", /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def unregister_vsync_event(self, event_cb: Callable, disp: "display_t", /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def send_vsync_event(self, param: Any, /) -> "result_t":
         """
         No Docstrings Yet
         """
@@ -3293,12 +3900,49 @@ class display_t(object):
         """
         ...
     
+    def get_draw_buf_size(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_invalidated_draw_buf_size(self, width: int, height: int, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def dpx(self, n: int, /) -> int:
         """
         No Docstrings Yet
         """
         ...
     
+    def draw_dispatch_layer(self, layer: "layer_t", /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+
+
+
+class _matrix_t_type(TypedDict, total=False):
+    ...
+
+
+
+class matrix_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_matrix_t_type] = dict(), /) -> "matrix_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
 
 
 
@@ -3441,85 +4085,6 @@ class area_t(object):
 
 
 
-class _point_t_type(TypedDict, total=False):
-    x: int = ...
-    y: int = ...
-
-
-
-class point_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_point_t_type] = dict(), /) -> "point_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    __SIZE__: ClassVar[int] = ...
-
-    def transform(self, angle: int, scale_x: int, scale_y: int, pivot: "point_t", zoom_first: bool, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def array_transform(self, count: int, angle: int, scale_x: int, scale_y: int, pivot: "point_t", zoom_first: bool, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def to_precise(self, /) -> "point_precise_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set(self, x: int, y: int, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def swap(self, p2: "point_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    @property
-    def x(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @x.setter
-    def x(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def y(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @y.setter
-    def y(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-
-
-
 class _style_t_type(TypedDict, total=False):
     values_and_props: Any = ...
     has_group: int = ...
@@ -3581,6 +4146,24 @@ class style_t(object):
         """
         ...
     
+    def set_margin_hor(self, value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_margin_ver(self, value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_margin_all(self, value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_transform_scale(self, value: int, /) -> None:
         """
         No Docstrings Yet
@@ -3594,6 +4177,18 @@ class style_t(object):
         ...
     
     def reset(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def copy(self, src: "style_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def merge(self, src: "style_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -3707,6 +4302,12 @@ class style_t(object):
         """
         ...
     
+    def set_translate_radial(self, value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_transform_scale_x(self, value: int, /) -> None:
         """
         No Docstrings Yet
@@ -3780,6 +4381,12 @@ class style_t(object):
         ...
     
     def set_pad_column(self, value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_pad_radial(self, value: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -4001,6 +4608,12 @@ class style_t(object):
         """
         ...
     
+    def set_image_colorkey(self, value: "image", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_line_width(self, value: int, /) -> None:
         """
         No Docstrings Yet
@@ -4109,7 +4722,31 @@ class style_t(object):
         """
         ...
     
+    def set_text_outline_stroke_color(self, value: "color_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_text_outline_stroke_width(self, value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_text_outline_stroke_opa(self, value: "opa_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_radius(self, value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_radial_offset(self, value: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -4140,6 +4777,18 @@ class style_t(object):
         ...
     
     def set_color_filter_opa(self, value: "opa_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_recolor(self, value: "color_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_recolor_opa(self, value: "opa_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -4392,33 +5041,149 @@ class style_value_t(object):
 
 
 
+class _color32_t_type(TypedDict, total=False):
+    blue: int = ...
+    green: int = ...
+    red: int = ...
+    alpha: int = ...
+
+
+
+class color32_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_color32_t_type] = dict(), /) -> "color32_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    def eq(self, c2: "color32_t", /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def color_premultiply(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def luminance(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def color_mix32(self, bg: "color32_t", /) -> "color32_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def color_mix32_premultiplied(self, bg: "color32_t", /) -> "color32_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def color_over32(self, bg: "color32_t", /) -> "color32_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    @property
+    def blue(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @blue.setter
+    def blue(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def green(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @green.setter
+    def green(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def red(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @red.setter
+    def red(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def alpha(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @alpha.setter
+    def alpha(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
 class _draw_rect_dsc_t_type(TypedDict, total=False):
     base: "draw_dsc_base_t" = ...
     radius: int = ...
-    bg_opa: "opa_t" = ...
-    bg_color: "color_t" = ...
-    bg_grad: "grad_dsc_t" = ...
     bg_image_src: Any = ...
     bg_image_symbol_font: Any = ...
     bg_image_recolor: "color_t" = ...
     bg_image_opa: "opa_t" = ...
     bg_image_recolor_opa: "opa_t" = ...
     bg_image_tiled: int = ...
+    bg_opa: "opa_t" = ...
+    border_opa: "opa_t" = ...
+    outline_opa: "opa_t" = ...
+    shadow_opa: "opa_t" = ...
+    bg_color: "color_t" = ...
+    bg_grad: "grad_dsc_t" = ...
+    bg_image_colorkey: "image" = ...
     border_color: "color_t" = ...
     border_width: int = ...
-    border_opa: "opa_t" = ...
     border_side: "border_side_t" = ...
     border_post: int = ...
     outline_color: "color_t" = ...
     outline_width: int = ...
     outline_pad: int = ...
-    outline_opa: "opa_t" = ...
     shadow_color: "color_t" = ...
     shadow_width: int = ...
     shadow_offset_x: int = ...
     shadow_offset_y: int = ...
     shadow_spread: int = ...
-    shadow_opa: "opa_t" = ...
 
 
 
@@ -4463,48 +5228,6 @@ class draw_rect_dsc_t(object):
 
     @radius.setter
     def radius(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def bg_opa(self) -> "opa_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @bg_opa.setter
-    def bg_opa(self, value: "opa_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def bg_color(self) -> "color_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @bg_color.setter
-    def bg_color(self, value: "color_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def bg_grad(self) -> "grad_dsc_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @bg_grad.setter
-    def bg_grad(self, value: "grad_dsc_t") -> None:
         """
         No Docstrings Yet
         """
@@ -4595,6 +5318,104 @@ class draw_rect_dsc_t(object):
         ...
 
     @property
+    def bg_opa(self) -> "opa_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @bg_opa.setter
+    def bg_opa(self, value: "opa_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def border_opa(self) -> "opa_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @border_opa.setter
+    def border_opa(self, value: "opa_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def outline_opa(self) -> "opa_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @outline_opa.setter
+    def outline_opa(self, value: "opa_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def shadow_opa(self) -> "opa_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @shadow_opa.setter
+    def shadow_opa(self, value: "opa_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def bg_color(self) -> "color_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @bg_color.setter
+    def bg_color(self, value: "color_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def bg_grad(self) -> "grad_dsc_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @bg_grad.setter
+    def bg_grad(self, value: "grad_dsc_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def bg_image_colorkey(self) -> "image":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @bg_image_colorkey.setter
+    def bg_image_colorkey(self, value: "image") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
     def border_color(self) -> "color_t":
        """
        No Docstrings Yet
@@ -4617,20 +5438,6 @@ class draw_rect_dsc_t(object):
 
     @border_width.setter
     def border_width(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def border_opa(self) -> "opa_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @border_opa.setter
-    def border_opa(self, value: "opa_t") -> None:
         """
         No Docstrings Yet
         """
@@ -4707,20 +5514,6 @@ class draw_rect_dsc_t(object):
         ...
 
     @property
-    def outline_opa(self) -> "opa_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @outline_opa.setter
-    def outline_opa(self, value: "opa_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
     def shadow_color(self) -> "color_t":
        """
        No Docstrings Yet
@@ -4790,26 +5583,12 @@ class draw_rect_dsc_t(object):
         """
         ...
 
-    @property
-    def shadow_opa(self) -> "opa_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @shadow_opa.setter
-    def shadow_opa(self, value: "opa_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
 
 
 
 class _draw_dsc_base_t_type(TypedDict, total=False):
     obj: "obj" = ...
-    part: "part_t" = ...
+    part: int = ...
     id1: int = ...
     id2: int = ...
     layer: "layer_t" = ...
@@ -4845,14 +5624,14 @@ class draw_dsc_base_t(object):
         ...
 
     @property
-    def part(self) -> "part_t":
+    def part(self) -> int:
        """
        No Docstrings Yet
        """ 
        ...
 
     @part.setter
-    def part(self, value: "part_t") -> None:
+    def part(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -4933,15 +5712,18 @@ class draw_dsc_base_t(object):
 
 class _layer_t_type(TypedDict, total=False):
     draw_buf: "draw_buf_t" = ...
-    buf_area: "area_t" = ...
-    color_format: "color_format_t" = ...
-    _clip_area: "area_t" = ...
-    phy_clip_area: "area_t" = ...
     draw_task_head: "draw_task_t" = ...
     parent: "layer_t" = ...
     next: "layer_t" = ...
-    all_tasks_added: bool = ...
     user_data: Any = ...
+    buf_area: "area_t" = ...
+    phy_clip_area: "area_t" = ...
+    _clip_area: "area_t" = ...
+    partial_y_offset: int = ...
+    recolor: "color32_t" = ...
+    color_format: "color_format_t" = ...
+    all_tasks_added: bool = ...
+    opa: "opa_t" = ...
 
 
 
@@ -4957,6 +5739,18 @@ class layer_t(object):
 
     __SIZE__: ClassVar[int] = ...
 
+    def init(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def reset(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     @property
     def draw_buf(self) -> "draw_buf_t":
        """
@@ -4966,62 +5760,6 @@ class layer_t(object):
 
     @draw_buf.setter
     def draw_buf(self, value: "draw_buf_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def buf_area(self) -> "area_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @buf_area.setter
-    def buf_area(self, value: "area_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def color_format(self) -> "color_format_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @color_format.setter
-    def color_format(self, value: "color_format_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def _clip_area(self) -> "area_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @_clip_area.setter
-    def _clip_area(self, value: "area_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def phy_clip_area(self) -> "area_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @phy_clip_area.setter
-    def phy_clip_area(self, value: "area_t") -> None:
         """
         No Docstrings Yet
         """
@@ -5070,6 +5808,104 @@ class layer_t(object):
         ...
 
     @property
+    def user_data(self) -> Any:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @user_data.setter
+    def user_data(self, value: Any) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def buf_area(self) -> "area_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @buf_area.setter
+    def buf_area(self, value: "area_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def phy_clip_area(self) -> "area_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @phy_clip_area.setter
+    def phy_clip_area(self, value: "area_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def _clip_area(self) -> "area_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @_clip_area.setter
+    def _clip_area(self, value: "area_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def partial_y_offset(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @partial_y_offset.setter
+    def partial_y_offset(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def recolor(self) -> "color32_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @recolor.setter
+    def recolor(self, value: "color32_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def color_format(self) -> "color_format_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @color_format.setter
+    def color_format(self, value: "color_format_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
     def all_tasks_added(self) -> bool:
        """
        No Docstrings Yet
@@ -5084,14 +5920,14 @@ class layer_t(object):
         ...
 
     @property
-    def user_data(self) -> Any:
+    def opa(self) -> "opa_t":
        """
        No Docstrings Yet
        """ 
        ...
 
-    @user_data.setter
-    def user_data(self, value: Any) -> None:
+    @opa.setter
+    def opa(self, value: "opa_t") -> None:
         """
         No Docstrings Yet
         """
@@ -5163,6 +5999,18 @@ class draw_task_t(object):
         """
         ...
     
+    def label_iterate_characters(self, dsc: "draw_label_dsc_t", coords: "area_t", cb: "draw_glyph_cb_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def unit_draw_letter(self, dsc: "draw_glyph_dsc_t", pos: "point_t", font: "font_t", letter: int, cb: "draw_glyph_cb_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def get_image_dsc(self, /) -> "draw_image_dsc_t":
         """
         No Docstrings Yet
@@ -5193,24 +6041,31 @@ class draw_task_t(object):
 class _draw_label_dsc_t_type(TypedDict, total=False):
     base: "draw_dsc_base_t" = ...
     text: str = ...
+    text_size: "point_t" = ...
     font: "font_t" = ...
-    sel_start: int = ...
-    sel_end: int = ...
     color: "color_t" = ...
-    sel_color: "color_t" = ...
-    sel_bg_color: "color_t" = ...
     line_space: int = ...
     letter_space: int = ...
     ofs_x: int = ...
     ofs_y: int = ...
-    opa: "opa_t" = ...
-    bidi_dir: "base_dir_t" = ...
+    rotation: int = ...
+    sel_start: int = ...
+    sel_end: int = ...
+    sel_color: "color_t" = ...
+    sel_bg_color: "color_t" = ...
+    text_length: int = ...
     align: "text_align_t" = ...
-    flag: "text_flag_t" = ...
+    bidi_dir: "base_dir_t" = ...
+    opa: "opa_t" = ...
+    outline_stroke_opa: "opa_t" = ...
     decor: "text_decor_t" = ...
-    blend_mode: "blend_mode_t" = ...
+    flag: "text_flag_t" = ...
     text_local: int = ...
+    text_static: int = ...
+    has_bided: int = ...
     hint: "draw_label_hint_t" = ...
+    outline_stroke_color: "color_t" = ...
+    outline_stroke_width: int = ...
 
 
 
@@ -5261,6 +6116,20 @@ class draw_label_dsc_t(object):
         ...
 
     @property
+    def text_size(self) -> "point_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @text_size.setter
+    def text_size(self, value: "point_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
     def font(self) -> "font_t":
        """
        No Docstrings Yet
@@ -5275,34 +6144,6 @@ class draw_label_dsc_t(object):
         ...
 
     @property
-    def sel_start(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @sel_start.setter
-    def sel_start(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def sel_end(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @sel_end.setter
-    def sel_end(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
     def color(self) -> "color_t":
        """
        No Docstrings Yet
@@ -5311,34 +6152,6 @@ class draw_label_dsc_t(object):
 
     @color.setter
     def color(self, value: "color_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def sel_color(self) -> "color_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @sel_color.setter
-    def sel_color(self, value: "color_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def sel_bg_color(self) -> "color_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @sel_bg_color.setter
-    def sel_bg_color(self, value: "color_t") -> None:
         """
         No Docstrings Yet
         """
@@ -5401,28 +6214,84 @@ class draw_label_dsc_t(object):
         ...
 
     @property
-    def opa(self) -> "opa_t":
+    def rotation(self) -> int:
        """
        No Docstrings Yet
        """ 
        ...
 
-    @opa.setter
-    def opa(self, value: "opa_t") -> None:
+    @rotation.setter
+    def rotation(self, value: int) -> None:
         """
         No Docstrings Yet
         """
         ...
 
     @property
-    def bidi_dir(self) -> "base_dir_t":
+    def sel_start(self) -> int:
        """
        No Docstrings Yet
        """ 
        ...
 
-    @bidi_dir.setter
-    def bidi_dir(self, value: "base_dir_t") -> None:
+    @sel_start.setter
+    def sel_start(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def sel_end(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @sel_end.setter
+    def sel_end(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def sel_color(self) -> "color_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @sel_color.setter
+    def sel_color(self, value: "color_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def sel_bg_color(self) -> "color_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @sel_bg_color.setter
+    def sel_bg_color(self, value: "color_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def text_length(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @text_length.setter
+    def text_length(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -5443,14 +6312,42 @@ class draw_label_dsc_t(object):
         ...
 
     @property
-    def flag(self) -> "text_flag_t":
+    def bidi_dir(self) -> "base_dir_t":
        """
        No Docstrings Yet
        """ 
        ...
 
-    @flag.setter
-    def flag(self, value: "text_flag_t") -> None:
+    @bidi_dir.setter
+    def bidi_dir(self, value: "base_dir_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def opa(self) -> "opa_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @opa.setter
+    def opa(self, value: "opa_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def outline_stroke_opa(self) -> "opa_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @outline_stroke_opa.setter
+    def outline_stroke_opa(self, value: "opa_t") -> None:
         """
         No Docstrings Yet
         """
@@ -5471,14 +6368,14 @@ class draw_label_dsc_t(object):
         ...
 
     @property
-    def blend_mode(self) -> "blend_mode_t":
+    def flag(self) -> "text_flag_t":
        """
        No Docstrings Yet
        """ 
        ...
 
-    @blend_mode.setter
-    def blend_mode(self, value: "blend_mode_t") -> None:
+    @flag.setter
+    def flag(self, value: "text_flag_t") -> None:
         """
         No Docstrings Yet
         """
@@ -5499,6 +6396,34 @@ class draw_label_dsc_t(object):
         ...
 
     @property
+    def text_static(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @text_static.setter
+    def text_static(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def has_bided(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @has_bided.setter
+    def has_bided(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
     def hint(self) -> "draw_label_hint_t":
        """
        No Docstrings Yet
@@ -5507,6 +6432,34 @@ class draw_label_dsc_t(object):
 
     @hint.setter
     def hint(self, value: "draw_label_hint_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def outline_stroke_color(self) -> "color_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @outline_stroke_color.setter
+    def outline_stroke_color(self, value: "color_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def outline_stroke_width(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @outline_stroke_width.setter
+    def outline_stroke_width(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -5538,6 +6491,7 @@ class _draw_image_dsc_t_type(TypedDict, total=False):
     base: "draw_dsc_base_t" = ...
     src: Any = ...
     header: "image" = ...
+    clip_radius: int = ...
     rotation: int = ...
     scale_x: int = ...
     scale_y: int = ...
@@ -5550,9 +6504,9 @@ class _draw_image_dsc_t_type(TypedDict, total=False):
     blend_mode: "blend_mode_t" = ...
     antialias: int = ...
     tile: int = ...
+    colorkey: "image" = ...
     sup: "draw_image_sup_t" = ...
     image_area: "area_t" = ...
-    clip_radius: int = ...
     bitmap_mask_src: "image" = ...
 
 
@@ -5612,6 +6566,20 @@ class draw_image_dsc_t(object):
 
     @header.setter
     def header(self, value: "image") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def clip_radius(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @clip_radius.setter
+    def clip_radius(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -5786,6 +6754,20 @@ class draw_image_dsc_t(object):
         ...
 
     @property
+    def colorkey(self) -> "image":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @colorkey.setter
+    def colorkey(self, value: "image") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
     def sup(self) -> "draw_image_sup_t":
        """
        No Docstrings Yet
@@ -5808,20 +6790,6 @@ class draw_image_dsc_t(object):
 
     @image_area.setter
     def image_area(self, value: "area_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def clip_radius(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @clip_radius.setter
-    def clip_radius(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -5872,7 +6840,6 @@ class _draw_line_dsc_t_type(TypedDict, total=False):
     dash_width: int = ...
     dash_gap: int = ...
     opa: "opa_t" = ...
-    blend_mode: "blend_mode_t" = ...
     round_start: int = ...
     round_end: int = ...
     raw_end: int = ...
@@ -6010,20 +6977,6 @@ class draw_line_dsc_t(object):
         ...
 
     @property
-    def blend_mode(self) -> "blend_mode_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @blend_mode.setter
-    def blend_mode(self, value: "blend_mode_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
     def round_start(self) -> int:
        """
        No Docstrings Yet
@@ -6142,8 +7095,8 @@ class _draw_arc_dsc_t_type(TypedDict, total=False):
     start_angle: "value_precise_t" = ...
     end_angle: "value_precise_t" = ...
     center: "point_t" = ...
-    radius: int = ...
     img_src: Any = ...
+    radius: int = ...
     opa: "opa_t" = ...
     rounded: int = ...
 
@@ -6252,20 +7205,6 @@ class draw_arc_dsc_t(object):
         ...
 
     @property
-    def radius(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @radius.setter
-    def radius(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
     def img_src(self) -> Any:
        """
        No Docstrings Yet
@@ -6274,6 +7213,20 @@ class draw_arc_dsc_t(object):
 
     @img_src.setter
     def img_src(self, value: Any) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def radius(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @radius.setter
+    def radius(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -6361,7 +7314,25 @@ class event_t(object):
         """
         ...
     
+    def stop_trickling(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def stop_processing(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def free_user_data_cb(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_invalidated_area(self, /) -> "area_t":
         """
         No Docstrings Yet
         """
@@ -6622,14 +7593,142 @@ class group_t(object):
 
 
 
+class _anim_timeline_t_type(TypedDict, total=False):
+    ...
+
+
+
+class anim_timeline_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_anim_timeline_t_type] = dict(), /) -> "anim_timeline_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    def delete(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def add(self, start_time: int, a: "anim_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def start(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def pause(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_reverse(self, reverse: bool, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_delay(self, delay: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_repeat_count(self, delay: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_repeat_delay(self, delay: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_progress(self, progress: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_user_data(self, at: "anim_timeline_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_playtime(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_reverse(self, /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_delay(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_progress(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_repeat_count(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_repeat_delay(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_user_data(self, /) -> Any:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def merge(self, src: "anim_timeline_t", delay: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+
+
+
 class _subject_t_type(TypedDict, total=False):
     subs_ll: "ll_t" = ...
-    type: int = ...
-    size: int = ...
     value: "subject_value_t" = ...
     prev_value: "subject_value_t" = ...
-    notify_restart_query: int = ...
+    min_value: "subject_value_t" = ...
+    max_value: "subject_value_t" = ...
     user_data: Any = ...
+    type: int = ...
+    size: int = ...
+    notify_restart_query: int = ...
 
 
 
@@ -6664,6 +7763,54 @@ class subject_t(object):
         ...
     
     def get_previous_int(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_min_value_int(self, value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_max_value_int(self, value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def init_float(self, value: float, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_float(self, value: float, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_float(self, /) -> float:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_previous_float(self, /) -> float:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_min_value_float(self, value: float, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_max_value_float(self, value: float, /) -> None:
         """
         No Docstrings Yet
         """
@@ -6798,34 +7945,6 @@ class subject_t(object):
         ...
 
     @property
-    def type(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @type.setter
-    def type(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def size(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @size.setter
-    def size(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
     def value(self) -> "subject_value_t":
        """
        No Docstrings Yet
@@ -6854,14 +7973,28 @@ class subject_t(object):
         ...
 
     @property
-    def notify_restart_query(self) -> int:
+    def min_value(self) -> "subject_value_t":
        """
        No Docstrings Yet
        """ 
        ...
 
-    @notify_restart_query.setter
-    def notify_restart_query(self, value: int) -> None:
+    @min_value.setter
+    def min_value(self, value: "subject_value_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def max_value(self) -> "subject_value_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @max_value.setter
+    def max_value(self, value: "subject_value_t") -> None:
         """
         No Docstrings Yet
         """
@@ -6876,6 +8009,48 @@ class subject_t(object):
 
     @user_data.setter
     def user_data(self, value: Any) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def type(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @type.setter
+    def type(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def size(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @size.setter
+    def size(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def notify_restart_query(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @notify_restart_query.setter
+    def notify_restart_query(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -7042,6 +8217,7 @@ class _subject_value_t_type(TypedDict, total=False):
     num: int = ...
     pointer: Any = ...
     color: "color_t" = ...
+    float_v: float = ...
 
 
 
@@ -7099,6 +8275,39 @@ class subject_value_t(object):
         """
         ...
 
+    @property
+    def float_v(self) -> float:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @float_v.setter
+    def float_v(self, value: float) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
+class _subject_increment_dsc_t_type(TypedDict, total=False):
+    ...
+
+
+
+class subject_increment_dsc_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_subject_increment_dsc_t_type] = dict(), /) -> "subject_increment_dsc_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
 
 
 
@@ -7144,19 +8353,60 @@ class observer_t(object):
 
 
 
-class _color32_t_type(TypedDict, total=False):
-    blue: int = ...
-    green: int = ...
-    red: int = ...
-    alpha: int = ...
+class _span_t_type(TypedDict, total=False):
+    ...
 
 
 
-class color32_t(object):
+class span_t(object):
     """
     No Docstrings Yet
     """
-    def __init__(self, args: Optional[_color32_t_type] = dict(), /) -> "color32_t":
+    def __init__(self, args: Optional[_span_t_type] = dict(), /) -> "span_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    def set_text(self, text: str, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_text_static(self, text: str, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_style(self, /) -> "style_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_text(self, /) -> str:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+
+
+
+class _span_coords_t_type(TypedDict, total=False):
+    heading: "area_t" = ...
+    middle: "area_t" = ...
+    trailing: "area_t" = ...
+
+
+
+class span_coords_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_span_coords_t_type] = dict(), /) -> "span_coords_t":
         """
         No Docstrings Yet
         """
@@ -7164,25 +8414,623 @@ class color32_t(object):
 
     __SIZE__: ClassVar[int] = ...
 
-    def eq(self, c2: "color32_t", /) -> bool:
+    @property
+    def heading(self) -> "area_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @heading.setter
+    def heading(self, value: "area_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def middle(self) -> "area_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @middle.setter
+    def middle(self, value: "area_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def trailing(self) -> "area_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @trailing.setter
+    def trailing(self, value: "area_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
+class _pinyin_dict_t_type(TypedDict, total=False):
+    py: str = ...
+    py_mb: str = ...
+
+
+
+class pinyin_dict_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_pinyin_dict_t_type] = dict(), /) -> "pinyin_dict_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    def py(self, value: str) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    py = property(fset=py)
+
+    def py_mb(self, value: str) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    py_mb = property(fset=py_mb)
+
+
+
+
+class _tree_class_t_type(TypedDict, total=False):
+    base_class: "tree_class_t" = ...
+    instance_size: int = ...
+
+
+
+class tree_class_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_tree_class_t_type] = dict(), /) -> "tree_class_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    def node_create(self, parent: "tree_node_t", /) -> "tree_node_t":
         """
         No Docstrings Yet
         """
         ...
     
-    def color_premultiply(self, /) -> None:
+    @property
+    def base_class(self) -> "tree_class_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @base_class.setter
+    def base_class(self, value: "tree_class_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def instance_size(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @instance_size.setter
+    def instance_size(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
+class _tree_node_t_type(TypedDict, total=False):
+    parent: "tree_node_t" = ...
+    children: List["tree_node_t"] = ...
+    child_cnt: int = ...
+    child_cap: int = ...
+    class_p: "tree_class_t" = ...
+
+
+
+class tree_node_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_tree_node_t_type] = dict(), /) -> "tree_node_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    def delete(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def walk(self, mode: "tree_walk_mode_t", cb: Callable, bcb: Callable, acb: Callable, node: "tree_node_t", /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    @property
+    def parent(self) -> "tree_node_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @parent.setter
+    def parent(self, value: "tree_node_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def children(self) -> List["tree_node_t"]:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @children.setter
+    def children(self, value: List["tree_node_t"]) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def child_cnt(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @child_cnt.setter
+    def child_cnt(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def child_cap(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @child_cap.setter
+    def child_cap(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def class_p(self) -> "tree_class_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @class_p.setter
+    def class_p(self, value: "tree_class_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
+class _font_class_t_type(TypedDict, total=False):
+    ...
+
+
+
+class font_class_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_font_class_t_type] = dict(), /) -> "font_class_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+
+
+class _font_info_t_type(TypedDict, total=False):
+    name: str = ...
+    class_p: "font_class_t" = ...
+    size: int = ...
+    render_mode: int = ...
+    style: int = ...
+    kerning: "font_kerning_t" = ...
+
+
+
+class font_info_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_font_info_t_type] = dict(), /) -> "font_info_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    def is_equal(self, ft_info_2: "font_info_t", /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    @property
+    def name(self) -> str:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @name.setter
+    def name(self, value: str) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def class_p(self) -> "font_class_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @class_p.setter
+    def class_p(self, value: "font_class_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def size(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @size.setter
+    def size(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def render_mode(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @render_mode.setter
+    def render_mode(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def style(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @style.setter
+    def style(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def kerning(self) -> "font_kerning_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @kerning.setter
+    def kerning(self, value: "font_kerning_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
+class _array_t_type(TypedDict, total=False):
+    data: Union[str, List[int]] = ...
+    size: int = ...
+    capacity: int = ...
+    element_size: int = ...
+    inner_alloc: bool = ...
+
+
+
+class array_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_array_t_type] = dict(), /) -> "array_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    def size(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def capacity(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def is_empty(self, /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def is_full(self, /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def clear(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def front(self, /) -> Any:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def back(self, /) -> Any:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def init(self, capacity: int, element_size: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def init_from_buf(self, buf: Any, capacity: int, element_size: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def resize(self, new_capacity: int, /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def deinit(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def copy(self, source: "array_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def shrink(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def remove(self, index: int, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def erase(self, start: int, end: int, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def concat(self, other: "array_t", /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def push_back(self, element: Any, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def assign(self, index: int, value: Any, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def at(self, index: int, /) -> Any:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    @property
+    def data(self) -> Union[str, List[int]]:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @data.setter
+    def data(self, value: Union[str, List[int]]) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def size(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @size.setter
+    def size(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def capacity(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @capacity.setter
+    def capacity(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def element_size(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @element_size.setter
+    def element_size(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def inner_alloc(self) -> bool:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @inner_alloc.setter
+    def inner_alloc(self, value: bool) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
+class _color16_t_type(TypedDict, total=False):
+    blue: int = ...
+    green: int = ...
+    red: int = ...
+
+
+
+class color16_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_color16_t_type] = dict(), /) -> "color16_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    def to_color(self, /) -> "color_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def premultiply(self, a: "opa_t", /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
     def luminance(self, /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def color_mix32(self, bg: "color32_t", /) -> "color32_t":
         """
         No Docstrings Yet
         """
@@ -7230,376 +9078,6 @@ class color32_t(object):
         """
         ...
 
-    @property
-    def alpha(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @alpha.setter
-    def alpha(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-
-
-
-class _span_t_type(TypedDict, total=False):
-    ...
-
-
-
-class span_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_span_t_type] = dict(), /) -> "span_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    def set_text(self, text: str, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_text_static(self, text: str, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_style(self, /) -> "style_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-
-
-
-class _pinyin_dict_t_type(TypedDict, total=False):
-    py: str = ...
-    py_mb: str = ...
-
-
-
-class pinyin_dict_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_pinyin_dict_t_type] = dict(), /) -> "pinyin_dict_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    __SIZE__: ClassVar[int] = ...
-
-    def py(self, value: str) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    py = property(fset=py)
-
-    def py_mb(self, value: str) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    py_mb = property(fset=py_mb)
-
-
-
-
-class _cache_class_t_type(TypedDict, total=False):
-    ...
-
-
-
-class cache_class_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_cache_class_t_type] = dict(), /) -> "cache_class_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    __SIZE__: ClassVar[int] = ...
-
-    def create(self, node_size: int, max_size: int, ops: "cache_ops_t", /) -> "cache_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-
-
-
-class _cache_t_type(TypedDict, total=False):
-    clz: "cache_class_t" = ...
-    node_size: int = ...
-    max_size: int = ...
-    size: int = ...
-    ops: "cache_ops_t" = ...
-    lock: "mutex_t" = ...
-    name: str = ...
-
-
-
-class cache_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_cache_t_type] = dict(), /) -> "cache_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    __SIZE__: ClassVar[int] = ...
-
-    def destroy(self, cache: "cache_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def acquire(self, key: Any, cache: "cache_t", /) -> "cache_entry_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def acquire_or_create(self, key: Any, cache: "cache_t", /) -> "cache_entry_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def add(self, key: Any, cache: "cache_t", /) -> "cache_entry_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def release(self, entry: "cache_entry_t", cache: "cache_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def reserve(self, reserved_size: int, cache: "cache_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def drop(self, key: Any, cache: "cache_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def drop_all(self, cache: "cache_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def evict_one(self, cache: "cache_t", /) -> bool:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_max_size(self, max_size: int, cache: "cache_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_max_size(self, cache: "cache_t", /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_size(self, cache: "cache_t", /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_free_size(self, cache: "cache_t", /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def is_enabled(self, /) -> bool:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_compare_cb(self, compare_cb: "cache_compare_cb_t", cache: "cache_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_create_cb(self, alloc_cb: Callable, cache: "cache_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_free_cb(self, free_cb: Callable, cache: "cache_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_name(self, name: str, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_name(self, /) -> str:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    @property
-    def clz(self) -> "cache_class_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @clz.setter
-    def clz(self, value: "cache_class_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def node_size(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @node_size.setter
-    def node_size(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def max_size(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @max_size.setter
-    def max_size(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def size(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @size.setter
-    def size(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def ops(self) -> "cache_ops_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @ops.setter
-    def ops(self, value: "cache_ops_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def lock(self) -> "mutex_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @lock.setter
-    def lock(self, value: "mutex_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def name(self) -> str:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @name.setter
-    def name(self, value: str) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-
-
-
-class _cache_ops_t_type(TypedDict, total=False):
-    ...
-
-
-
-class cache_ops_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_cache_ops_t_type] = dict(), /) -> "cache_ops_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    __SIZE__: ClassVar[int] = ...
 
 
 
@@ -7850,289 +9328,6 @@ class timer_t(object):
 
 
 
-class _array_t_type(TypedDict, total=False):
-    data: Union[str, List[int]] = ...
-    size: int = ...
-    capacity: int = ...
-    element_size: int = ...
-
-
-
-class array_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_array_t_type] = dict(), /) -> "array_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    __SIZE__: ClassVar[int] = ...
-
-    def init(self, capacity: int, element_size: int, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def resize(self, new_capacity: int, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def deinit(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def size(self, /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def capacity(self, /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def is_empty(self, /) -> bool:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def is_full(self, /) -> bool:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def copy(self, source: "array_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def clear(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def shrink(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def remove(self, index: int, /) -> "result_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def erase(self, start: int, end: int, /) -> "result_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def concat(self, other: "array_t", /) -> "result_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def push_back(self, element: Any, /) -> "result_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def assign(self, index: int, value: Any, /) -> "result_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def at(self, index: int, /) -> Any:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def front(self, /) -> Any:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def back(self, /) -> Any:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    @property
-    def data(self) -> Union[str, List[int]]:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @data.setter
-    def data(self, value: Union[str, List[int]]) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def size(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @size.setter
-    def size(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def capacity(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @capacity.setter
-    def capacity(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def element_size(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @element_size.setter
-    def element_size(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-
-
-
-class _anim_timeline_t_type(TypedDict, total=False):
-    ...
-
-
-
-class anim_timeline_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_anim_timeline_t_type] = dict(), /) -> "anim_timeline_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    def delete(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def add(self, start_time: int, a: "anim_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def start(self, /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def pause(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_reverse(self, reverse: bool, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_repeat_count(self, cnt: int, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_repeat_delay(self, cnt: int, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_progress(self, progress: int, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_playtime(self, /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_reverse(self, /) -> bool:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_progress(self, /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_repeat_count(self, /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_repeat_delay(self, /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-
-
-
 class _rb_t_type(TypedDict, total=False):
     ...
 
@@ -8241,18 +9436,198 @@ class rb_node_t(object):
 
 
 
-class _color16_t_type(TypedDict, total=False):
-    blue: int = ...
-    green: int = ...
-    red: int = ...
+class _iter_t_type(TypedDict, total=False):
+    ...
 
 
 
-class color16_t(object):
+class iter_t(object):
     """
     No Docstrings Yet
     """
-    def __init__(self, args: Optional[_color16_t_type] = dict(), /) -> "color16_t":
+    def __init__(self, args: Optional[_iter_t_type] = dict(), /) -> "iter_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    def get_context(self, /) -> Any:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def destroy(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def next(self, elem: Any, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def make_peekable(self, capacity: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def peek(self, elem: Any, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def peek_advance(self, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def peek_reset(self, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def inspect(self, inspect_cb: "iter_inspect_cb", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+
+
+
+class _circle_buf_t_type(TypedDict, total=False):
+    ...
+
+
+
+class circle_buf_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_circle_buf_t_type] = dict(), /) -> "circle_buf_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    def resize(self, capacity: int, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def destroy(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def size(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def capacity(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def remain(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def is_empty(self, /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def is_full(self, /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def reset(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def head(self, /) -> Any:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def tail(self, /) -> Any:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def read(self, data: Any, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def write(self, data: Any, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def fill(self, count: int, fill_cb: Callable, circle_buf: "circle_buf_t", /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def skip(self, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def peek(self, data: Any, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def peek_at(self, index: int, data: Any, /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+
+
+
+class _event_list_t_type(TypedDict, total=False):
+    array: "array_t" = ...
+    is_traversing: int = ...
+    has_marked_deleting: int = ...
+
+
+
+class event_list_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_event_list_t_type] = dict(), /) -> "event_list_t":
         """
         No Docstrings Yet
         """
@@ -8260,55 +9635,85 @@ class color16_t(object):
 
     __SIZE__: ClassVar[int] = ...
 
-    def premultiply(self, a: "opa_t", /) -> None:
+    def send(self, e: "event_t", preprocess: bool, /) -> "result_t":
         """
         No Docstrings Yet
         """
         ...
     
-    def luminance(self, /) -> int:
+    def add(self, cb: Callable, filter: "event_code_t", list: "event_list_t", /) -> "event_dsc_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def remove_dsc(self, dsc: "event_dsc_t", /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_count(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_dsc(self, index: int, /) -> "event_dsc_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def remove(self, index: int, /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def remove_all(self, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
     @property
-    def blue(self) -> int:
+    def array(self) -> "array_t":
        """
        No Docstrings Yet
        """ 
        ...
 
-    @blue.setter
-    def blue(self, value: int) -> None:
+    @array.setter
+    def array(self, value: "array_t") -> None:
         """
         No Docstrings Yet
         """
         ...
 
     @property
-    def green(self) -> int:
+    def is_traversing(self) -> int:
        """
        No Docstrings Yet
        """ 
        ...
 
-    @green.setter
-    def green(self, value: int) -> None:
+    @is_traversing.setter
+    def is_traversing(self, value: int) -> None:
         """
         No Docstrings Yet
         """
         ...
 
     @property
-    def red(self) -> int:
+    def has_marked_deleting(self) -> int:
        """
        No Docstrings Yet
        """ 
        ...
 
-    @red.setter
-    def red(self, value: int) -> None:
+    @has_marked_deleting.setter
+    def has_marked_deleting(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -8448,6 +9853,12 @@ class fs_file_t(object):
         """
         ...
     
+    def get_size(self, pos: List[int], /) -> "fs_res_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     @property
     def file_d(self) -> Any:
        """
@@ -8513,7 +9924,7 @@ class fs_file_cache_t(object):
 
 
 class _fs_path_ex_t_type(TypedDict, total=False):
-    ...
+    path: List[str] = ...
 
 
 
@@ -8527,12 +9938,34 @@ class fs_path_ex_t(object):
         """
         ...
 
-    def make_path_from_buffer(self, letter: str, buf: Any, size: int, /) -> None:
+    __SIZE__: ClassVar[int] = ...
+
+    def make_path_from_buffer(self, letter: str, buf: Any, size: int, ext: str, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
+    def get_buffer_from_path(self, buffer: List[None], size: List[int], /) -> "result_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    @property
+    def path(self) -> List[str]:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @path.setter
+    def path(self, value: List[str]) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
 
 
 
@@ -8600,30 +10033,6 @@ class fs_dir_t(object):
         """
         ...
 
-
-
-
-class _grad_t_type(TypedDict, total=False):
-    ...
-
-
-
-class grad_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_grad_t_type] = dict(), /) -> "grad_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    def gradient_cleanup(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
 
 
 
@@ -9002,6 +10411,271 @@ class draw_box_shadow_dsc_t(object):
 
 
 
+class _draw_letter_dsc_t_type(TypedDict, total=False):
+    base: "draw_dsc_base_t" = ...
+    unicode: int = ...
+    font: "font_t" = ...
+    color: "color_t" = ...
+    rotation: int = ...
+    scale_x: int = ...
+    scale_y: int = ...
+    skew_x: int = ...
+    skew_y: int = ...
+    pivot: "point_t" = ...
+    opa: "opa_t" = ...
+    decor: "text_decor_t" = ...
+    blend_mode: "blend_mode_t" = ...
+    outline_stroke_opa: "opa_t" = ...
+    outline_stroke_width: int = ...
+    outline_stroke_color: "color_t" = ...
+
+
+
+class draw_letter_dsc_t(object):
+    """
+    No Docstrings Yet
+    """
+    def __init__(self, args: Optional[_draw_letter_dsc_t_type] = dict(), /) -> "draw_letter_dsc_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    __SIZE__: ClassVar[int] = ...
+
+    def init(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    @property
+    def base(self) -> "draw_dsc_base_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @base.setter
+    def base(self, value: "draw_dsc_base_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def unicode(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @unicode.setter
+    def unicode(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def font(self) -> "font_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @font.setter
+    def font(self, value: "font_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def color(self) -> "color_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @color.setter
+    def color(self, value: "color_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def rotation(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @rotation.setter
+    def rotation(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def scale_x(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @scale_x.setter
+    def scale_x(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def scale_y(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @scale_y.setter
+    def scale_y(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def skew_x(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @skew_x.setter
+    def skew_x(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def skew_y(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @skew_y.setter
+    def skew_y(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def pivot(self) -> "point_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @pivot.setter
+    def pivot(self, value: "point_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def opa(self) -> "opa_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @opa.setter
+    def opa(self, value: "opa_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def decor(self) -> "text_decor_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @decor.setter
+    def decor(self, value: "text_decor_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def blend_mode(self) -> "blend_mode_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @blend_mode.setter
+    def blend_mode(self, value: "blend_mode_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def outline_stroke_opa(self) -> "opa_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @outline_stroke_opa.setter
+    def outline_stroke_opa(self, value: "opa_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def outline_stroke_width(self) -> int:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @outline_stroke_width.setter
+    def outline_stroke_width(self, value: int) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def outline_stroke_color(self) -> "color_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @outline_stroke_color.setter
+    def outline_stroke_color(self, value: "color_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+
+
+
 class _draw_glyph_dsc_t_type(TypedDict, total=False):
     ...
 
@@ -9026,99 +10700,103 @@ class draw_glyph_dsc_t(object):
 
 
 
-class _draw_unit_t_type(TypedDict, total=False):
-    ...
+class _draw_triangle_dsc_t_type(TypedDict, total=False):
+    base: "draw_dsc_base_t" = ...
+    p: List["point_precise_t"] = ...
+    color: "color_t" = ...
+    opa: "opa_t" = ...
+    grad: "grad_dsc_t" = ...
 
 
 
-class draw_unit_t(object):
+class draw_triangle_dsc_t(object):
     """
     No Docstrings Yet
     """
-    def __init__(self, args: Optional[_draw_unit_t_type] = dict(), /) -> "draw_unit_t":
+    def __init__(self, args: Optional[_draw_triangle_dsc_t_type] = dict(), /) -> "draw_triangle_dsc_t":
         """
         No Docstrings Yet
         """
         ...
 
-    def label_iterate_characters(self, dsc: "draw_label_dsc_t", coords: "area_t", cb: "draw_glyph_cb_t", /) -> None:
+    __SIZE__: ClassVar[int] = ...
+
+    def init(self, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def sw_fill(self, dsc: "draw_fill_dsc_t", coords: "area_t", /) -> None:
+    @property
+    def base(self) -> "draw_dsc_base_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @base.setter
+    def base(self, value: "draw_dsc_base_t") -> None:
         """
         No Docstrings Yet
         """
         ...
-    
-    def sw_border(self, dsc: "draw_border_dsc_t", coords: "area_t", /) -> None:
+
+    @property
+    def p(self) -> List["point_precise_t"]:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @p.setter
+    def p(self, value: List["point_precise_t"]) -> None:
         """
         No Docstrings Yet
         """
         ...
-    
-    def sw_box_shadow(self, dsc: "draw_box_shadow_dsc_t", coords: "area_t", /) -> None:
+
+    @property
+    def color(self) -> "color_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @color.setter
+    def color(self, value: "color_t") -> None:
         """
         No Docstrings Yet
         """
         ...
-    
-    def sw_image(self, draw_dsc: "draw_image_dsc_t", coords: "area_t", /) -> None:
+
+    @property
+    def opa(self) -> "opa_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @opa.setter
+    def opa(self, value: "opa_t") -> None:
         """
         No Docstrings Yet
         """
         ...
-    
-    def sw_label(self, dsc: "draw_label_dsc_t", coords: "area_t", /) -> None:
+
+    @property
+    def grad(self) -> "grad_dsc_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @grad.setter
+    def grad(self, value: "grad_dsc_t") -> None:
         """
         No Docstrings Yet
         """
         ...
-    
-    def sw_arc(self, dsc: "draw_arc_dsc_t", coords: "area_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def sw_line(self, dsc: "draw_line_dsc_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def sw_layer(self, draw_dsc: "draw_image_dsc_t", coords: "area_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def sw_triangle(self, dsc: "draw_triangle_dsc_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def sw_mask_rect(self, dsc: "draw_mask_rect_dsc_t", coords: "area_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def sw_transform(self, dest_area: "area_t", src_buf: Any, src_w: int, src_h: int, src_stride: int, draw_dsc: "draw_image_dsc_t", sup: "draw_image_sup_t", cf: "color_format_t", dest_buf: Any, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def sw_blend(self, dsc: "draw_sw_blend_dsc_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
+
 
 
 
@@ -9192,6 +10870,12 @@ class indev_t(object):
         ...
     
     def set_long_press_time(self, long_press_time: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_long_press_repeat_time(self, long_press_time: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -9311,6 +10995,12 @@ class indev_t(object):
         """
         ...
     
+    def get_short_click_streak(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def get_scroll_dir(self, /) -> "dir_t":
         """
         No Docstrings Yet
@@ -9324,6 +11014,12 @@ class indev_t(object):
         ...
     
     def get_vect(self, point: "point_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_cursor(self, /) -> "obj":
         """
         No Docstrings Yet
         """
@@ -9384,718 +11080,6 @@ class indev_t(object):
         ...
     
     def send_event(self, code: "event_code_t", param: Any, /) -> "result_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-
-
-
-class _gd_GIF_type(TypedDict, total=False):
-    fd: "fs_file_t" = ...
-    data: str = ...
-    is_file: int = ...
-    f_rw_p: int = ...
-    anim_start: int = ...
-    width: int = ...
-    height: int = ...
-    depth: int = ...
-    loop_count: int = ...
-    gce: "gd_GCE" = ...
-    palette: "gd_Palette" = ...
-    lct: "gd_Palette" = ...
-    gct: "gd_Palette" = ...
-    fx: int = ...
-    fy: int = ...
-    fw: int = ...
-    fh: int = ...
-    bgindex: int = ...
-    canvas: Union[str, List[int]] = ...
-    frame: Union[str, List[int]] = ...
-
-
-
-class gd_GIF(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_gd_GIF_type] = dict(), /) -> "gd_GIF":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    __SIZE__: ClassVar[int] = ...
-
-    def render_frame(self, buffer: Union[str, List[int]], /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_frame(self, /) -> int:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def rewind(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def close_gif(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    @property
-    def fd(self) -> "fs_file_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @fd.setter
-    def fd(self, value: "fs_file_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def data(self) -> str:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @data.setter
-    def data(self, value: str) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def is_file(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @is_file.setter
-    def is_file(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def f_rw_p(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @f_rw_p.setter
-    def f_rw_p(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def anim_start(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @anim_start.setter
-    def anim_start(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def width(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @width.setter
-    def width(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def height(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @height.setter
-    def height(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def depth(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @depth.setter
-    def depth(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def loop_count(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @loop_count.setter
-    def loop_count(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def gce(self) -> "gd_GCE":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @gce.setter
-    def gce(self, value: "gd_GCE") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def palette(self) -> "gd_Palette":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @palette.setter
-    def palette(self, value: "gd_Palette") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def lct(self) -> "gd_Palette":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @lct.setter
-    def lct(self, value: "gd_Palette") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def gct(self) -> "gd_Palette":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @gct.setter
-    def gct(self, value: "gd_Palette") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def fx(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @fx.setter
-    def fx(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def fy(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @fy.setter
-    def fy(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def fw(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @fw.setter
-    def fw(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def fh(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @fh.setter
-    def fh(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def bgindex(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @bgindex.setter
-    def bgindex(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def canvas(self) -> Union[str, List[int]]:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @canvas.setter
-    def canvas(self, value: Union[str, List[int]]) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def frame(self) -> Union[str, List[int]]:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @frame.setter
-    def frame(self, value: Union[str, List[int]]) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-
-
-
-class _gd_GCE_type(TypedDict, total=False):
-    delay: int = ...
-    tindex: int = ...
-    disposal: int = ...
-    input: int = ...
-    transparency: int = ...
-
-
-
-class gd_GCE(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_gd_GCE_type] = dict(), /) -> "gd_GCE":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    __SIZE__: ClassVar[int] = ...
-
-    @property
-    def delay(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @delay.setter
-    def delay(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def tindex(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @tindex.setter
-    def tindex(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def disposal(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @disposal.setter
-    def disposal(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def input(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @input.setter
-    def input(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def transparency(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @transparency.setter
-    def transparency(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-
-
-
-class _gd_Palette_type(TypedDict, total=False):
-    size: int = ...
-    colors: List[int] = ...
-
-
-
-class gd_Palette(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_gd_Palette_type] = dict(), /) -> "gd_Palette":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    __SIZE__: ClassVar[int] = ...
-
-    @property
-    def size(self) -> int:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @size.setter
-    def size(self, value: int) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def colors(self) -> List[int]:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @colors.setter
-    def colors(self, value: List[int]) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-
-
-
-class _draw_triangle_dsc_t_type(TypedDict, total=False):
-    base: "draw_dsc_base_t" = ...
-    bg_opa: "opa_t" = ...
-    bg_color: "color_t" = ...
-    bg_grad: "grad_dsc_t" = ...
-    p: List["point_precise_t"] = ...
-
-
-
-class draw_triangle_dsc_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_draw_triangle_dsc_t_type] = dict(), /) -> "draw_triangle_dsc_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    __SIZE__: ClassVar[int] = ...
-
-    def init(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    @property
-    def base(self) -> "draw_dsc_base_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @base.setter
-    def base(self, value: "draw_dsc_base_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def bg_opa(self) -> "opa_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @bg_opa.setter
-    def bg_opa(self, value: "opa_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def bg_color(self) -> "color_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @bg_color.setter
-    def bg_color(self, value: "color_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def bg_grad(self) -> "grad_dsc_t":
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @bg_grad.setter
-    def bg_grad(self, value: "grad_dsc_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def p(self) -> List["point_precise_t"]:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @p.setter
-    def p(self, value: List["point_precise_t"]) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-
-
-
-class _draw_sw_mask_line_param_t_type(TypedDict, total=False):
-    ...
-
-
-
-class draw_sw_mask_line_param_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_draw_sw_mask_line_param_t_type] = dict(), /) -> "draw_sw_mask_line_param_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    def points_init(self, p1x: int, p1y: int, p2x: int, p2y: int, side: "draw_sw_mask_line_side_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def angle_init(self, px: int, py: int, angle: int, side: "draw_sw_mask_line_side_t", /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-
-
-
-class _draw_sw_mask_angle_param_t_type(TypedDict, total=False):
-    ...
-
-
-
-class draw_sw_mask_angle_param_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_draw_sw_mask_angle_param_t_type] = dict(), /) -> "draw_sw_mask_angle_param_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    def init(self, vertex_x: int, vertex_y: int, start_angle: int, end_angle: int, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-
-
-
-class _draw_sw_mask_radius_param_t_type(TypedDict, total=False):
-    ...
-
-
-
-class draw_sw_mask_radius_param_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_draw_sw_mask_radius_param_t_type] = dict(), /) -> "draw_sw_mask_radius_param_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    def init(self, rect: "area_t", radius: int, inv: bool, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-
-
-
-class _draw_sw_mask_fade_param_t_type(TypedDict, total=False):
-    ...
-
-
-
-class draw_sw_mask_fade_param_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_draw_sw_mask_fade_param_t_type] = dict(), /) -> "draw_sw_mask_fade_param_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    def init(self, coords: "area_t", opa_top: "opa_t", y_top: int, opa_bottom: "opa_t", y_bottom: int, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-
-
-
-class _draw_sw_mask_map_param_t_type(TypedDict, total=False):
-    ...
-
-
-
-class draw_sw_mask_map_param_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_draw_sw_mask_map_param_t_type] = dict(), /) -> "draw_sw_mask_map_param_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    def init(self, coords: "area_t", map: "opa_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -10217,50 +11201,15 @@ class hit_test_info_t(object):
 
 
 
-class _draw_mask_rect_dsc_t_type(TypedDict, total=False):
-    ...
-
-
-
-class draw_mask_rect_dsc_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_draw_mask_rect_dsc_t_type] = dict(), /) -> "draw_mask_rect_dsc_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-
-
-
-
-class _draw_sw_blend_dsc_t_type(TypedDict, total=False):
-    ...
-
-
-
-class draw_sw_blend_dsc_t(object):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, args: Optional[_draw_sw_blend_dsc_t_type] = dict(), /) -> "draw_sw_blend_dsc_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-
-
-
-
-
 class _indev_data_t_type(TypedDict, total=False):
+    gesture_type: List["indev_gesture_type_t"] = ...
+    gesture_data: None = ...
+    state: "indev_state_t" = ...
     point: "point_t" = ...
     key: int = ...
     btn_id: int = ...
     enc_diff: int = ...
-    state: "indev_state_t" = ...
+    timestamp: int = ...
     continue_reading: bool = ...
 
 
@@ -10276,6 +11225,48 @@ class indev_data_t(object):
         ...
 
     __SIZE__: ClassVar[int] = ...
+
+    @property
+    def gesture_type(self) -> List["indev_gesture_type_t"]:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @gesture_type.setter
+    def gesture_type(self, value: List["indev_gesture_type_t"]) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def gesture_data(self) -> None:
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @gesture_data.setter
+    def gesture_data(self, value: None) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+
+    @property
+    def state(self) -> "indev_state_t":
+       """
+       No Docstrings Yet
+       """ 
+       ...
+
+    @state.setter
+    def state(self, value: "indev_state_t") -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
 
     @property
     def point(self) -> "point_t":
@@ -10334,14 +11325,14 @@ class indev_data_t(object):
         ...
 
     @property
-    def state(self) -> "indev_state_t":
+    def timestamp(self) -> int:
        """
        No Docstrings Yet
        """ 
        ...
 
-    @state.setter
-    def state(self, value: "indev_state_t") -> None:
+    @timestamp.setter
+    def timestamp(self, value: int) -> None:
         """
         No Docstrings Yet
         """
@@ -10483,9 +11474,11 @@ class obj(object):
         FLOATING: ClassVar[int] = ...
         SEND_DRAW_TASK_EVENTS: ClassVar[int] = ...
         OVERFLOW_VISIBLE: ClassVar[int] = ...
-        FLEX_IN_NEW_TRACK: ClassVar[int] = ...
+        EVENT_TRICKLE: ClassVar[int] = ...
+        STATE_TRICKLE: ClassVar[int] = ...
         LAYOUT_1: ClassVar[int] = ...
         LAYOUT_2: ClassVar[int] = ...
+        FLEX_IN_NEW_TRACK: ClassVar[int] = ...
         WIDGET_1: ClassVar[int] = ...
         WIDGET_2: ClassVar[int] = ...
         USER_1: ClassVar[int] = ...
@@ -10596,6 +11589,12 @@ class obj(object):
         """
         ...
     
+    def get_style_translate_radial(self, part: "part_t", /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def get_style_transform_scale_x(self, part: "part_t", /) -> int:
         """
         No Docstrings Yet
@@ -10669,6 +11668,12 @@ class obj(object):
         ...
     
     def get_style_pad_column(self, part: "part_t", /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_style_pad_radial(self, part: "part_t", /) -> int:
         """
         No Docstrings Yet
         """
@@ -10932,6 +11937,12 @@ class obj(object):
         """
         ...
     
+    def get_style_image_colorkey(self, part: "part_t", /) -> "image":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def get_style_line_width(self, part: "part_t", /) -> int:
         """
         No Docstrings Yet
@@ -11058,7 +12069,37 @@ class obj(object):
         """
         ...
     
+    def get_style_text_outline_stroke_color(self, part: "part_t", /) -> "color_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_style_text_outline_stroke_color_filtered(self, part: "part_t", /) -> "color_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_style_text_outline_stroke_width(self, part: "part_t", /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_style_text_outline_stroke_opa(self, part: "part_t", /) -> "opa_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def get_style_radius(self, part: "part_t", /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_style_radial_offset(self, part: "part_t", /) -> int:
         """
         No Docstrings Yet
         """
@@ -11089,6 +12130,18 @@ class obj(object):
         ...
     
     def get_style_color_filter_opa(self, part: "part_t", /) -> "opa_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_style_recolor(self, part: "part_t", /) -> "color_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_style_recolor_opa(self, part: "part_t", /) -> "opa_t":
         """
         No Docstrings Yet
         """
@@ -11598,6 +12651,18 @@ class obj(object):
         """
         ...
     
+    def set_transform(self, matrix: "matrix_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def reset_transform(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def get_coords(self, coords: "area_t", /) -> None:
         """
         No Docstrings Yet
@@ -11701,6 +12766,12 @@ class obj(object):
         ...
     
     def move_children_by(self, x_diff: int, y_diff: int, ignore_floating: bool, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_transform(self, /) -> "matrix_t":
         """
         No Docstrings Yet
         """
@@ -11856,19 +12927,19 @@ class obj(object):
         """
         ...
     
-    def scroll_by(self, x: int, y: int, anim_en: "anim_enable_t", /) -> None:
+    def scroll_by(self, dx: int, dy: int, anim_en: "anim_enable_t", /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def scroll_by_bounded(self, x: int, y: int, anim_en: "anim_enable_t", /) -> None:
+    def scroll_by_bounded(self, dx: int, dy: int, anim_en: "anim_enable_t", /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def scroll_to(self, x: int, y: int, anim_en: "anim_enable_t", /) -> None:
+    def scroll_to(self, dx: int, dy: int, anim_en: "anim_enable_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -11899,6 +12970,12 @@ class obj(object):
         ...
     
     def is_scrolling(self, /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def stop_scroll_anim(self, /) -> None:
         """
         No Docstrings Yet
         """
@@ -11959,6 +13036,18 @@ class obj(object):
         ...
     
     def refresh_style(self, part: "part_t", prop: "style_prop_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def style_set_disabled(self, style: "style_t", selector: "style_selector_t", dis: bool, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def style_get_disabled(self, style: "style_t", selector: "style_selector_t", /) -> bool:
         """
         No Docstrings Yet
         """
@@ -12102,6 +13191,12 @@ class obj(object):
         """
         ...
     
+    def set_style_translate_radial(self, value: int, selector: "style_selector_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_style_transform_scale_x(self, value: int, selector: "style_selector_t", /) -> None:
         """
         No Docstrings Yet
@@ -12175,6 +13270,12 @@ class obj(object):
         ...
     
     def set_style_pad_column(self, value: int, selector: "style_selector_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_style_pad_radial(self, value: int, selector: "style_selector_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -12396,6 +13497,12 @@ class obj(object):
         """
         ...
     
+    def set_style_image_colorkey(self, value: "image", selector: "style_selector_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_style_line_width(self, value: int, selector: "style_selector_t", /) -> None:
         """
         No Docstrings Yet
@@ -12504,7 +13611,31 @@ class obj(object):
         """
         ...
     
+    def set_style_text_outline_stroke_color(self, value: "color_t", selector: "style_selector_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_style_text_outline_stroke_width(self, value: int, selector: "style_selector_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_style_text_outline_stroke_opa(self, value: "opa_t", selector: "style_selector_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_style_radius(self, value: int, selector: "style_selector_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_style_radial_offset(self, value: int, selector: "style_selector_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -12535,6 +13666,18 @@ class obj(object):
         ...
     
     def set_style_color_filter_opa(self, value: "opa_t", selector: "style_selector_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_style_recolor(self, value: "color_t", selector: "style_selector_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_style_recolor_opa(self, value: "opa_t", selector: "style_selector_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -12690,6 +13833,18 @@ class obj(object):
         """
         ...
     
+    def style_apply_recolor(self, part: "part_t", color: "color32_t", /) -> "color32_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_style_recolor_recursive(self, part: "part_t", /) -> "color32_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def init_draw_rect_dsc(self, part: "part_t", draw_dsc: "draw_rect_dsc_t", /) -> None:
         """
         No Docstrings Yet
@@ -12792,13 +13947,13 @@ class obj(object):
         """
         ...
     
-    def remove_event_cb(self, event_cb: Callable, /) -> bool:
+    def remove_event_dsc(self, dsc: "event_dsc_t", /) -> bool:
         """
         No Docstrings Yet
         """
         ...
     
-    def remove_event_dsc(self, dsc: "event_dsc_t", /) -> bool:
+    def remove_event_cb(self, event_cb: Callable, /) -> int:
         """
         No Docstrings Yet
         """
@@ -12822,7 +13977,7 @@ class obj(object):
         """
         ...
     
-    def update_flag(self, f: "obj", v: bool, /) -> None:
+    def set_flag(self, f: "obj", v: bool, /) -> None:
         """
         No Docstrings Yet
         """
@@ -12924,6 +14079,24 @@ class obj(object):
         """
         ...
     
+    def add_screen_load_event(self, trigger: "event_code_t", screen: "obj", anim_type: "screen_load_anim_t", duration: int, delay: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def add_screen_create_event(self, trigger: "event_code_t", screen_create_cb: "screen_create_cb_t", anim_type: "screen_load_anim_t", duration: int, delay: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def add_play_timeline_event(self, trigger: "event_code_t", at: "anim_timeline_t", delay: int, reverse: bool, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_id(self, obj: "obj", /) -> None:
         """
         No Docstrings Yet
@@ -12936,7 +14109,7 @@ class obj(object):
         """
         ...
     
-    def get_child_by_id(self, id: Any, /) -> "obj":
+    def find_by_id(self, id: Any, /) -> "obj":
         """
         No Docstrings Yet
         """
@@ -12978,6 +14151,60 @@ class obj(object):
         """
         ...
     
+    def add_subject_increment_event(self, subject: "subject_t", trigger: "event_code_t", step: int, /) -> "subject_increment_dsc_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_subject_increment_event_min_value(self, dsc: "subject_increment_dsc_t", min_value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_subject_increment_event_max_value(self, dsc: "subject_increment_dsc_t", min_value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_subject_increment_event_rollover(self, dsc: "subject_increment_dsc_t", rollover: bool, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def add_subject_toggle_event(self, subject: "subject_t", trigger: "event_code_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def add_subject_set_int_event(self, subject: "subject_t", trigger: "event_code_t", value: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def add_subject_set_float_event(self, subject: "subject_t", trigger: "event_code_t", value: float, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def add_subject_set_string_event(self, subject: "subject_t", trigger: "event_code_t", value: str, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def bind_style(self, style: "style_t", selector: "style_selector_t", subject: "subject_t", ref_value: int, /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def bind_flag_if_eq(self, subject: "subject_t", flag: "obj", ref_value: int, /) -> "observer_t":
         """
         No Docstrings Yet
@@ -12990,6 +14217,30 @@ class obj(object):
         """
         ...
     
+    def bind_flag_if_gt(self, subject: "subject_t", flag: "obj", ref_value: int, /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def bind_flag_if_ge(self, subject: "subject_t", flag: "obj", ref_value: int, /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def bind_flag_if_lt(self, subject: "subject_t", flag: "obj", ref_value: int, /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def bind_flag_if_le(self, subject: "subject_t", flag: "obj", ref_value: int, /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def bind_state_if_eq(self, subject: "subject_t", state: "state_t", ref_value: int, /) -> "observer_t":
         """
         No Docstrings Yet
@@ -12997,6 +14248,30 @@ class obj(object):
         ...
     
     def bind_state_if_not_eq(self, subject: "subject_t", state: "state_t", ref_value: int, /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def bind_state_if_gt(self, subject: "subject_t", state: "state_t", ref_value: int, /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def bind_state_if_ge(self, subject: "subject_t", state: "state_t", ref_value: int, /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def bind_state_if_lt(self, subject: "subject_t", state: "state_t", ref_value: int, /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def bind_state_if_le(self, subject: "subject_t", state: "state_t", ref_value: int, /) -> "observer_t":
         """
         No Docstrings Yet
         """
@@ -13021,6 +14296,7 @@ class image(obj):
         COMPRESSED: ClassVar[int] = ...
         ALLOCATED: ClassVar[int] = ...
         MODIFIABLE: ClassVar[int] = ...
+        CUSTOM_DRAW: ClassVar[int] = ...
         USER1: ClassVar[int] = ...
         USER2: ClassVar[int] = ...
         USER3: ClassVar[int] = ...
@@ -13061,9 +14337,10 @@ class image(obj):
         LEFT_MID: ClassVar[int] = ...
         RIGHT_MID: ClassVar[int] = ...
         CENTER: ClassVar[int] = ...
-        AUTO_TRANSFORM: ClassVar[int] = ...
         STRETCH: ClassVar[int] = ...
         TILE: ClassVar[int] = ...
+        CONTAIN: ClassVar[int] = ...
+        COVER: ClassVar[int] = ...
     
 
     def __init__(self, parent: "obj", /) -> "image":
@@ -13079,54 +14356,6 @@ class image(obj):
         ...
     
     def buf_free(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def cache_init(self, /) -> "result_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def cache_resize(self, evict_now: bool, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def cache_drop(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def cache_is_enabled(self, /) -> bool:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def header_cache_init(self, /) -> "result_t":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def header_cache_resize(self, evict_now: bool, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def header_cache_drop(self, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def header_cache_is_enabled(self, /) -> bool:
         """
         No Docstrings Yet
         """
@@ -13246,6 +14475,18 @@ class image(obj):
         """
         ...
     
+    def set_pivot_x(self, index: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_pivot_y(self, index: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_scale(self, delay_ms: int, /) -> None:
         """
         No Docstrings Yet
@@ -13336,6 +14577,30 @@ class image(obj):
         """
         ...
     
+    def get_src_width(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_src_height(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_transformed_width(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_transformed_height(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def get_blend_mode(self, /) -> "blend_mode_t":
         """
         No Docstrings Yet
@@ -13360,6 +14625,12 @@ class image(obj):
         """
         ...
     
+    def bind_src(self, subject: "subject_t", /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
 
 class animimg(obj):
     """
@@ -13372,6 +14643,12 @@ class animimg(obj):
         ...
     
     def set_src(self, dsc: Any, num: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_src_reverse(self, dsc: Any, num: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -13390,6 +14667,30 @@ class animimg(obj):
         ...
     
     def set_repeat_count(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_reverse_duration(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_reverse_delay(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_start_cb(self, start_cb: Callable, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_completed_cb(self, completed_cb: Callable, /) -> None:
         """
         No Docstrings Yet
         """
@@ -13499,6 +14800,18 @@ class arc(obj):
         """
         ...
     
+    def set_min_value(self, index: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_max_value(self, index: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_change_rate(self, delay_ms: int, /) -> None:
         """
         No Docstrings Yet
@@ -13571,6 +14884,12 @@ class arc(obj):
         """
         ...
     
+    def bind_value(self, subject: "subject_t", /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def align_obj_to_angle(self, obj_to_align: "obj", r_offset: int, /) -> None:
         """
         No Docstrings Yet
@@ -13583,7 +14902,155 @@ class arc(obj):
         """
         ...
     
-    def bind_value(self, subject: "subject_t", /) -> "observer_t":
+
+class arclabel(obj):
+    """
+    No Docstrings Yet
+    """
+    class DIR(object):
+        """
+        No Docstrings Yet
+        """
+        CLOCKWISE: ClassVar[int] = ...
+        COUNTER_CLOCKWISE: ClassVar[int] = ...
+    
+    class TEXT_ALIGN(object):
+        """
+        No Docstrings Yet
+        """
+        DEFAULT: ClassVar[int] = ...
+        LEADING: ClassVar[int] = ...
+        CENTER: ClassVar[int] = ...
+        TRAILING: ClassVar[int] = ...
+    
+
+    def __init__(self, parent: "obj", /) -> "arclabel":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_text(self, text: str, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_text_static(self, text: str, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_angle_start(self, start: "value_precise_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_angle_size(self, start: "value_precise_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_offset(self, index: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_dir(self, dir: "arclabel", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_recolor(self, antialias: bool, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_radius(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_center_offset_x(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_center_offset_y(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_text_vertical_align(self, align: "arclabel", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_text_horizontal_align(self, align: "arclabel", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_angle_start(self, /) -> "value_precise_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_angle_size(self, /) -> "value_precise_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_dir(self, /) -> "arclabel":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_recolor(self, /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_radius(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_center_offset_x(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_center_offset_y(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_text_vertical_align(self, /) -> "arclabel":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_text_horizontal_align(self, /) -> "arclabel":
         """
         No Docstrings Yet
         """
@@ -13594,12 +15061,12 @@ class label(obj):
     """
     No Docstrings Yet
     """
-    class LONG(object):
+    class LONG_MODE(object):
         """
         No Docstrings Yet
         """
         WRAP: ClassVar[int] = ...
-        DOT: ClassVar[int] = ...
+        DOTS: ClassVar[int] = ...
         SCROLL: ClassVar[int] = ...
         SCROLL_CIRCULAR: ClassVar[int] = ...
         CLIP: ClassVar[int] = ...
@@ -13636,6 +15103,12 @@ class label(obj):
         ...
     
     def set_text_selection_end(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_recolor(self, antialias: bool, /) -> None:
         """
         No Docstrings Yet
         """
@@ -13683,6 +15156,18 @@ class label(obj):
         """
         ...
     
+    def get_recolor(self, /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def bind_text(self, subject: "subject_t", fmt: str, /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def ins_text(self, pos: int, txt: str, /) -> None:
         """
         No Docstrings Yet
@@ -13690,12 +15175,6 @@ class label(obj):
         ...
     
     def cut_text(self, time: int, delay: int, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def bind_text(self, subject: "subject_t", fmt: str, /) -> "observer_t":
         """
         No Docstrings Yet
         """
@@ -13742,6 +15221,18 @@ class bar(obj):
         ...
     
     def set_range(self, x: int, y: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_min_value(self, index: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_max_value(self, index: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -13801,6 +15292,12 @@ class bar(obj):
         """
         ...
     
+    def bind_value(self, subject: "subject_t", /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
 
 class button(obj):
     """
@@ -13821,6 +15318,22 @@ class buttonmatrix(obj):
         """
         No Docstrings Yet
         """
+        NONE: ClassVar[int] = ...
+        WIDTH_1: ClassVar[int] = ...
+        WIDTH_2: ClassVar[int] = ...
+        WIDTH_3: ClassVar[int] = ...
+        WIDTH_4: ClassVar[int] = ...
+        WIDTH_5: ClassVar[int] = ...
+        WIDTH_6: ClassVar[int] = ...
+        WIDTH_7: ClassVar[int] = ...
+        WIDTH_8: ClassVar[int] = ...
+        WIDTH_9: ClassVar[int] = ...
+        WIDTH_10: ClassVar[int] = ...
+        WIDTH_11: ClassVar[int] = ...
+        WIDTH_12: ClassVar[int] = ...
+        WIDTH_13: ClassVar[int] = ...
+        WIDTH_14: ClassVar[int] = ...
+        WIDTH_15: ClassVar[int] = ...
         HIDDEN: ClassVar[int] = ...
         NO_REPEAT: ClassVar[int] = ...
         DISABLED: ClassVar[int] = ...
@@ -13828,9 +15341,9 @@ class buttonmatrix(obj):
         CHECKED: ClassVar[int] = ...
         CLICK_TRIG: ClassVar[int] = ...
         POPOVER: ClassVar[int] = ...
+        RECOLOR: ClassVar[int] = ...
         RESERVED_1: ClassVar[int] = ...
         RESERVED_2: ClassVar[int] = ...
-        RESERVED_3: ClassVar[int] = ...
         CUSTOM_1: ClassVar[int] = ...
         CUSTOM_2: ClassVar[int] = ...
     
@@ -13936,7 +15449,37 @@ class calendar(obj):
         """
         ...
     
-    def set_showed_date(self, time: int, delay: int, /) -> None:
+    def set_today_year(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_today_month(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_today_day(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_month_shown(self, time: int, delay: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_shown_year(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_shown_month(self, delay_ms: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -13990,29 +15533,13 @@ class calendar(obj):
         """
         ...
     
-    def header_dropdown_set_year_list(self, text: str, /) -> None:
+    def add_header_arrow(self, /) -> "obj":
         """
         No Docstrings Yet
         """
         ...
     
-
-class calendar_header_arrow(obj):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, parent: "obj", /) -> "calendar_header_arrow":
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-
-class calendar_header_dropdown(obj):
-    """
-    No Docstrings Yet
-    """
-    def __init__(self, parent: "obj", /) -> "calendar_header_dropdown":
+    def add_header_dropdown(self, /) -> "obj":
         """
         No Docstrings Yet
         """
@@ -14125,6 +15652,7 @@ class chart(obj):
         NONE: ClassVar[int] = ...
         LINE: ClassVar[int] = ...
         BAR: ClassVar[int] = ...
+        STACKED: ClassVar[int] = ...
         SCATTER: ClassVar[int] = ...
     
     class UPDATE_MODE(object):
@@ -14163,7 +15691,19 @@ class chart(obj):
         """
         ...
     
-    def set_range(self, axis: "chart", min: int, max: int, /) -> None:
+    def set_axis_range(self, axis: "chart", min: int, max: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_axis_min_value(self, axis: "chart", min: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_axis_max_value(self, axis: "chart", min: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -14175,7 +15715,19 @@ class chart(obj):
         """
         ...
     
-    def set_div_line_count(self, hdiv: int, vdiv: int, /) -> None:
+    def set_div_line_count(self, time: int, delay: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_hor_div_line_count(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_ver_div_line_count(self, delay_ms: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -14259,7 +15811,25 @@ class chart(obj):
         """
         ...
     
+    def remove_cursor(self, cursor: "chart", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_cursor_pos(self, cursor: "chart", pos: "point_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_cursor_pos_x(self, cursor: "chart", x: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_cursor_pos_y(self, cursor: "chart", x: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -14277,7 +15847,7 @@ class chart(obj):
         """
         ...
     
-    def set_all_value(self, ser: "chart", value: int, /) -> None:
+    def set_all_values(self, ser: "chart", value: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -14295,37 +15865,49 @@ class chart(obj):
         """
         ...
     
-    def set_value_by_id(self, ser: "chart", id: int, value: int, /) -> None:
+    def set_series_values(self, ser: "chart", values: List[int], values_cnt: int, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def set_value_by_id2(self, ser: "chart", id: int, x_value: int, y_value: int, /) -> None:
+    def set_series_values2(self, ser: "chart", x_values: List[int], y_values: List[int], values_cnt: int, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def set_ext_y_array(self, ser: "chart", array: List[int], /) -> None:
+    def set_series_value_by_id(self, ser: "chart", id: int, value: int, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def set_ext_x_array(self, ser: "chart", array: List[int], /) -> None:
+    def set_series_value_by_id2(self, ser: "chart", id: int, x_value: int, y_value: int, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def get_y_array(self, ser: "chart", /) -> List[int]:
+    def set_series_ext_y_array(self, ser: "chart", array: List[int], /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
-    def get_x_array(self, ser: "chart", /) -> List[int]:
+    def set_series_ext_x_array(self, ser: "chart", array: List[int], /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_series_y_array(self, ser: "chart", /) -> List[int]:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_series_x_array(self, ser: "chart", /) -> List[int]:
         """
         No Docstrings Yet
         """
@@ -15064,6 +16646,12 @@ class roller(obj):
         """
         ...
     
+    def set_selected_str(self, sel_opt: str, anim: "anim_enable_t", /) -> bool:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_visible_row_count(self, delay_ms: int, /) -> None:
         """
         No Docstrings Yet
@@ -15089,6 +16677,12 @@ class roller(obj):
         ...
     
     def get_option_count(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_option_str(self, option: int, buf: str, buf_size: int, /) -> "result_t":
         """
         No Docstrings Yet
         """
@@ -15154,6 +16748,18 @@ class scale(obj):
         """
         ...
     
+    def set_min_value(self, index: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_max_value(self, index: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_angle_range(self, delay_ms: int, /) -> None:
         """
         No Docstrings Yet
@@ -15202,13 +16808,49 @@ class scale(obj):
         """
         ...
     
-    def section_set_range(self, minor_range: int, major_range: int, /) -> None:
+    def section_set_range(self, min: int, max: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_section_range(self, section: "scale", min: int, max: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_section_min_value(self, section: "scale", min: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_section_max_value(self, section: "scale", min: int, /) -> None:
         """
         No Docstrings Yet
         """
         ...
     
     def section_set_style(self, part: "part_t", section_part_style: "style_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_section_style_main(self, section: "scale", style: "style_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_section_style_indicator(self, section: "scale", style: "style_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_section_style_items(self, section: "scale", style: "style_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -15227,6 +16869,12 @@ class scale(obj):
         ...
     
     def get_major_tick_every(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_rotation(self, /) -> int:
         """
         No Docstrings Yet
         """
@@ -15256,6 +16904,18 @@ class scale(obj):
         """
         ...
     
+    def bind_section_min_value(self, section: "scale", subject: "subject_t", /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def bind_section_max_value(self, section: "scale", subject: "subject_t", /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
 
 class slider(obj):
     """
@@ -15268,6 +16928,14 @@ class slider(obj):
         NORMAL: ClassVar[int] = ...
         SYMMETRICAL: ClassVar[int] = ...
         RANGE: ClassVar[int] = ...
+    
+    class ORIENTATION(object):
+        """
+        No Docstrings Yet
+        """
+        AUTO: ClassVar[int] = ...
+        HORIZONTAL: ClassVar[int] = ...
+        VERTICAL: ClassVar[int] = ...
     
 
     def __init__(self, parent: "obj", /) -> "slider":
@@ -15282,7 +16950,7 @@ class slider(obj):
         """
         ...
     
-    def set_left_value(self, x: int, anim_en: "anim_enable_t", /) -> None:
+    def set_start_value(self, x: int, anim_en: "anim_enable_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -15294,7 +16962,25 @@ class slider(obj):
         """
         ...
     
+    def set_min_value(self, index: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_max_value(self, index: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_mode(self, mode: "slider", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_orientation(self, orientation: "slider", /) -> None:
         """
         No Docstrings Yet
         """
@@ -15336,6 +17022,12 @@ class slider(obj):
         """
         ...
     
+    def get_orientation(self, /) -> "slider":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def is_symmetrical(self, /) -> bool:
         """
         No Docstrings Yet
@@ -15359,13 +17051,31 @@ class spangroup(obj):
         """
         ...
     
-    def new_span(self, /) -> "span_t":
+    def add_span(self, /) -> "span_t":
         """
         No Docstrings Yet
         """
         ...
     
     def delete_span(self, span: "span_t", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_span_text(self, span: "span_t", text: str, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_span_text_static(self, span: "span_t", text: str, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_span_style(self, span: "span_t", style: "style_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -15449,7 +17159,25 @@ class spangroup(obj):
         """
         ...
     
-    def refr_mode(self, /) -> None:
+    def get_span_coords(self, span: "span_t", /) -> "span_coords_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_span_by_point(self, point: "point_t", /) -> "span_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def refresh(self, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def bind_span_text(self, span: "span_t", subject: "subject_t", fmt: str, /) -> "observer_t":
         """
         No Docstrings Yet
         """
@@ -15705,6 +17433,18 @@ class spinbox(obj):
         """
         ...
     
+    def set_digit_count(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_dec_point_pos(self, delay_ms: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def set_step(self, delay_ms: int, /) -> None:
         """
         No Docstrings Yet
@@ -15712,6 +17452,18 @@ class spinbox(obj):
         ...
     
     def set_range(self, x: int, y: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_min_value(self, index: int, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_max_value(self, index: int, /) -> None:
         """
         No Docstrings Yet
         """
@@ -15771,6 +17523,12 @@ class spinbox(obj):
         """
         ...
     
+    def bind_value(self, subject: "subject_t", /) -> "observer_t":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
 
 class spinner(obj):
     """
@@ -15793,7 +17551,28 @@ class switch(obj):
     """
     No Docstrings Yet
     """
+    class ORIENTATION(object):
+        """
+        No Docstrings Yet
+        """
+        AUTO: ClassVar[int] = ...
+        HORIZONTAL: ClassVar[int] = ...
+        VERTICAL: ClassVar[int] = ...
+    
+
     def __init__(self, parent: "obj", /) -> "switch":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_orientation(self, orientation: "switch", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_orientation(self, /) -> "switch":
         """
         No Docstrings Yet
         """
@@ -15808,6 +17587,7 @@ class table(obj):
         """
         No Docstrings Yet
         """
+        NONE: ClassVar[int] = ...
         MERGE_RIGHT: ClassVar[int] = ...
         TEXT_CROP: ClassVar[int] = ...
         CUSTOM_1: ClassVar[int] = ...
@@ -15846,7 +17626,7 @@ class table(obj):
         """
         ...
     
-    def add_cell_ctrl(self, row: int, col: int, ctrl: "table", /) -> None:
+    def set_cell_ctrl(self, row: int, col: int, ctrl: "table", /) -> None:
         """
         No Docstrings Yet
         """
@@ -15960,6 +17740,12 @@ class tabview(obj):
         ...
     
     def get_tab_active(self, /) -> int:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def get_tab_button(self, idx: int, /) -> "obj":
         """
         No Docstrings Yet
         """
@@ -16108,6 +17894,14 @@ class barcode(obj):
     """
     No Docstrings Yet
     """
+    class ENCODING_CODE128(object):
+        """
+        No Docstrings Yet
+        """
+        GS1: ClassVar[int] = ...
+        RAW: ClassVar[int] = ...
+    
+
     def __init__(self, parent: "obj", /) -> "barcode":
         """
         No Docstrings Yet
@@ -16144,6 +17938,12 @@ class barcode(obj):
         """
         ...
     
+    def set_encoding(self, encoding: "barcode", /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
     def update(self, data: str, /) -> "result_t":
         """
         No Docstrings Yet
@@ -16168,12 +17968,24 @@ class barcode(obj):
         """
         ...
     
+    def get_encoding(self, /) -> "barcode":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
 
 class gif(obj):
     """
     No Docstrings Yet
     """
     def __init__(self, parent: "obj", /) -> "gif":
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_color_format(self, color_format: "color_format_t", /) -> None:
         """
         No Docstrings Yet
         """
@@ -16250,8 +18062,38 @@ class qrcode(obj):
         """
         ...
     
+    def set_data(self, text: str, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+    def set_quiet_zone(self, antialias: bool, /) -> None:
+        """
+        No Docstrings Yet
+        """
+        ...
+    
+
+class tree_node_class_class(object):
+    """
+    No Docstrings Yet
+    """
+    ...
 
 class obj_class(object):
+    """
+    No Docstrings Yet
+    """
+    ...
+
+class binfont_font_class_class(object):
+    """
+    No Docstrings Yet
+    """
+    ...
+
+class builtin_font_class_class(object):
     """
     No Docstrings Yet
     """
@@ -16270,6 +18112,12 @@ class animimg_class(object):
     ...
 
 class arc_class(object):
+    """
+    No Docstrings Yet
+    """
+    ...
+
+class arclabel_class(object):
     """
     No Docstrings Yet
     """
@@ -16300,18 +18148,6 @@ class buttonmatrix_class(object):
     ...
 
 class calendar_class(object):
-    """
-    No Docstrings Yet
-    """
-    ...
-
-class calendar_header_arrow_class(object):
-    """
-    No Docstrings Yet
-    """
-    ...
-
-class calendar_header_dropdown_class(object):
     """
     No Docstrings Yet
     """
@@ -16505,8 +18341,6 @@ class qrcode_class(object):
 
 
 color_filter_shade: "color_filter_dsc_t" = ...
-cache_class_lru_rb_count: "cache_class_t" = ...
-cache_class_lru_rb_size: "cache_class_t" = ...
 font_montserrat_12: "font_t" = ...
 font_montserrat_14: "font_t" = ...
 font_montserrat_16: "font_t" = ...
@@ -16520,7 +18354,35 @@ def memzero(dst: Any, len: int, /) -> None:
     ...
 
 
+def streq(s1: str, s2: str, /) -> bool:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
 def sqr(x: int, /) -> int:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def color_swap_16(c: int, /) -> int:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def swap_bytes_32(x: int, /) -> int:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def swap_bytes_16(c: int, /) -> int:
     """
     No Docstrings Yet
     """
@@ -16646,6 +18508,13 @@ def strlen(str: str, /) -> int:
     ...
 
 
+def strnlen(str: str, max_len: int, /) -> int:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
 def strlcpy(dst: str, src: str, dst_size: int, /) -> int:
     """
     No Docstrings Yet
@@ -16674,7 +18543,21 @@ def strcmp(s1: str, s2: str, /) -> int:
     ...
 
 
+def strncmp(s1: str, s2: str, len: int, /) -> int:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
 def strdup(src: str, /) -> str:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def strndup(src: str, max_len: int, /) -> str:
     """
     No Docstrings Yet
     """
@@ -16689,6 +18572,13 @@ def strcat(dst: str, src: str, /) -> str:
 
 
 def strncat(dst: str, src: str, dest_size: int, /) -> str:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def strchr(str: str, c: int, /) -> str:
     """
     No Docstrings Yet
     """
@@ -16730,6 +18620,20 @@ def malloc(size: int, /) -> Any:
     ...
 
 
+def calloc(num: int, size: int, /) -> Any:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def zalloc(size: int, /) -> Any:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
 def malloc_zeroed(size: int, /) -> Any:
     """
     No Docstrings Yet
@@ -16737,7 +18641,7 @@ def malloc_zeroed(size: int, /) -> Any:
     ...
 
 
-def free(data: Any, /) -> None:
+def free(src: Any, /) -> None:
     """
     No Docstrings Yet
     """
@@ -16751,6 +18655,13 @@ def realloc(data_p: Any, new_size: int, /) -> Any:
     ...
 
 
+def reallocf(data_p: Any, new_size: int, /) -> Any:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
 def malloc_core(size: int, /) -> Any:
     """
     No Docstrings Yet
@@ -16758,7 +18669,7 @@ def malloc_core(size: int, /) -> Any:
     ...
 
 
-def free_core(data: Any, /) -> None:
+def free_core(src: Any, /) -> None:
     """
     No Docstrings Yet
     """
@@ -16800,7 +18711,14 @@ def tick_get() -> int:
     ...
 
 
-def tick_elaps(prev_tick: int, /) -> int:
+def tick_elaps(x: int, /) -> int:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def tick_diff(tick: int, prev_tick: int, /) -> int:
     """
     No Docstrings Yet
     """
@@ -16814,6 +18732,13 @@ def delay_ms(ms: int, /) -> None:
     ...
 
 
+def delay_set_cb(cb: "delay_cb_t", /) -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
 def tick_set_cb(cb: "tick_get_cb_t", /) -> None:
     """
     No Docstrings Yet
@@ -16821,7 +18746,7 @@ def tick_set_cb(cb: "tick_get_cb_t", /) -> None:
     ...
 
 
-def delay_set_cb(cb: "delay_cb_t", /) -> None:
+def tick_get_cb() -> "tick_get_cb_t":
     """
     No Docstrings Yet
     """
@@ -16835,7 +18760,7 @@ def timer_handler() -> int:
     ...
 
 
-def timer_handler_run_in_period(prev_tick: int, /) -> int:
+def timer_handler_run_in_period(x: int, /) -> int:
     """
     No Docstrings Yet
     """
@@ -16961,7 +18886,7 @@ def rand_set_seed(ms: int, /) -> None:
     ...
 
 
-def rand(min: int, max: int, /) -> int:
+def rand(tick: int, prev_tick: int, /) -> int:
     """
     No Docstrings Yet
     """
@@ -17017,7 +18942,7 @@ def anim_count_running() -> int:
     ...
 
 
-def anim_speed(prev_tick: int, /) -> int:
+def anim_speed(x: int, /) -> int:
     """
     No Docstrings Yet
     """
@@ -17025,6 +18950,13 @@ def anim_speed(prev_tick: int, /) -> int:
 
 
 def anim_speed_clamped(speed: int, min_time: int, max_time: int, /) -> int:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def anim_resolve_speed(speed: int, start: int, end: int, /) -> int:
     """
     No Docstrings Yet
     """
@@ -17227,84 +19159,28 @@ def utils_bsearch(key: Any, base: Any, n: int, size: int, cmp: List[int (], /) -
     ...
 
 
-def thread_init(thread: "thread_t", stack_size: int, callback: Callable, prio: "thread_prio_t", user_data: Any, /) -> "result_t":
+def iter_create(instance: Any, elem_size: int, context_size: int, next_cb: "iter_next_cb", /) -> "iter_t":
     """
     No Docstrings Yet
     """
     ...
 
 
-def thread_delete(thread: "thread_t", /) -> "result_t":
+def circle_buf_create(capacity: int, element_size: int, /) -> "circle_buf_t":
     """
     No Docstrings Yet
     """
     ...
 
 
-def mutex_init(mutex: "mutex_t", /) -> "result_t":
+def circle_buf_create_from_buf(buf: Any, capacity: int, element_size: int, /) -> "circle_buf_t":
     """
     No Docstrings Yet
     """
     ...
 
 
-def mutex_lock(mutex: "mutex_t", /) -> "result_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def mutex_lock_isr(mutex: "mutex_t", /) -> "result_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def mutex_unlock(mutex: "mutex_t", /) -> "result_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def mutex_delete(mutex: "mutex_t", /) -> "result_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def thread_sync_init(sync: "thread_sync_t", /) -> "result_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def thread_sync_wait(sync: "thread_sync_t", /) -> "result_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def thread_sync_signal(sync: "thread_sync_t", /) -> "result_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def thread_sync_signal_isr(sync: "thread_sync_t", /) -> "result_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def thread_sync_delete(sync: "thread_sync_t", /) -> "result_t":
+def circle_buf_create_from_array(array: "array_t", /) -> "circle_buf_t":
     """
     No Docstrings Yet
     """
@@ -17332,77 +19208,14 @@ def unlock() -> None:
     ...
 
 
-def cache_entry_get_size(node_size: int, /) -> int:
+def sleep_ms(ms: int, /) -> None:
     """
     No Docstrings Yet
     """
     ...
 
 
-def cache_entry_get_ref(entry: "cache_entry_t", /) -> int:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def cache_entry_get_node_size(entry: "cache_entry_t", /) -> int:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def cache_entry_is_invalid(entry: "cache_entry_t", /) -> bool:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def cache_entry_get_data(entry: "cache_entry_t", /) -> Any:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def cache_entry_get_cache(entry: "cache_entry_t", /) -> "cache_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def cache_entry_get_entry(data: Any, node_size: int, /) -> "cache_entry_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def cache_entry_alloc(node_size: int, cache: "cache_t", /) -> "cache_entry_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def cache_entry_init(entry: "cache_entry_t", cache: "cache_t", node_size: int, /) -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def cache_entry_delete(entry: "cache_entry_t", /) -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def font_default() -> "font_t":
+def font_get_default() -> "font_t":
     """
     No Docstrings Yet
     """
@@ -17410,13 +19223,6 @@ def font_default() -> "font_t":
 
 
 def text_get_size(size_res: "point_t", text: str, font: "font_t", letter_space: int, line_space: int, max_width: int, flag: "text_flag_t", /) -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def text_get_width(txt: str, length: int, font: "font_t", letter_space: int, /) -> int:
     """
     No Docstrings Yet
     """
@@ -17479,55 +19285,6 @@ def style_prop_lookup_flags(prop: "style_prop_t", /) -> int:
     ...
 
 
-def event_send(list: "event_list_t", e: "event_t", preprocess: bool, /) -> "result_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def event_add(list: "event_list_t", filter: "event_code_t", cb: Callable, user_data: Any, /) -> "event_dsc_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def event_remove_dsc(list: "event_list_t", dsc: "event_dsc_t", /) -> bool:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def event_get_count(list: "event_list_t", /) -> int:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def event_get_dsc(list: "event_list_t", index: int, /) -> "event_dsc_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def event_remove(list: "event_list_t", index: int, /) -> bool:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def event_remove_all(list: "event_list_t", /) -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
 def event_register_id() -> int:
     """
     No Docstrings Yet
@@ -17535,140 +19292,7 @@ def event_register_id() -> int:
     ...
 
 
-def fs_get_drv(letter: str, /) -> "fs_drv_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def fs_is_ready(letter: str, /) -> bool:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def fs_get_letters(buf: str, /) -> str:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def fs_get_ext(fn: str, /) -> str:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def fs_up(buf: str, /) -> str:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def fs_get_last(fn: str, /) -> str:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_init() -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_deinit() -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_create_unit(size: int, /) -> Any:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_add_task(layer: "layer_t", coords: "area_t", /) -> "draw_task_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_finalize_task_creation(layer: "layer_t", t: "draw_task_t", /) -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_dispatch() -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_dispatch_wait_for_request() -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_wait_for_finish() -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_dispatch_request() -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_get_unit_count() -> int:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_get_next_available_task(layer: "layer_t", t_prev: "draw_task_t", draw_unit_id: int, /) -> "draw_task_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_layer_create(parent_layer: "layer_t", color_format: "color_format_t", area: "area_t", /) -> "layer_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_layer_alloc_buf(layer: "layer_t", /) -> Any:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_layer_go_to_xy(layer: "layer_t", x: int, y: int, /) -> Any:
+def event_code_get_name(code: "event_code_t", /) -> str:
     """
     No Docstrings Yet
     """
@@ -17752,6 +19376,209 @@ def clamp_height(width: int, min_width: int, max_width: int, ref_width: int, /) 
     ...
 
 
+def fs_get_drv(letter: str, /) -> "fs_drv_t":
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def fs_is_ready(letter: str, /) -> bool:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def fs_path_get_size(path: str, size_res: List[int], /) -> "fs_res_t":
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def fs_load_to_buf(buf: Any, buf_size: int, path: str, /) -> "fs_res_t":
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def fs_get_letters(buf: str, /) -> str:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def fs_get_ext(fn: str, /) -> str:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def fs_up(buf: str, /) -> str:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def fs_get_last(fn: str, /) -> str:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def fs_path_join(buf: str, buf_sz: int, base: str, end: str, /) -> int:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_init() -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_deinit() -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_create_unit(size: int, /) -> Any:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_add_task(layer: "layer_t", coords: "area_t", type: "draw_task_type_t", /) -> "draw_task_t":
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_finalize_task_creation(layer: "layer_t", t: "draw_task_t", /) -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_dispatch() -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_dispatch_wait_for_request() -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_wait_for_finish() -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_dispatch_request() -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_get_unit_count() -> int:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_get_available_task(layer: "layer_t", t_prev: "draw_task_t", draw_unit_id: int, /) -> "draw_task_t":
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_get_next_available_task(layer: "layer_t", t_prev: "draw_task_t", draw_unit_id: int, /) -> "draw_task_t":
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_unit_send_event(name: str, code: "event_code_t", param: Any, /) -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_layer_create(parent_layer: "layer_t", color_format: "color_format_t", area: "area_t", /) -> "layer_t":
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_layer_init(layer: "layer_t", parent_layer: "layer_t", color_format: "color_format_t", area: "area_t", /) -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_layer_alloc_buf(layer: "layer_t", /) -> Any:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_layer_go_to_xy(layer: "layer_t", x: int, y: int, /) -> Any:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_fill(layer: "layer_t", dsc: "draw_fill_dsc_t", coords: "area_t", /) -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_border(layer: "layer_t", dsc: "draw_border_dsc_t", coords: "area_t", /) -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_box_shadow(layer: "layer_t", dsc: "draw_box_shadow_dsc_t", coords: "area_t", /) -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
 def draw_rect(layer: "layer_t", dsc: "draw_rect_dsc_t", coords: "area_t", /) -> None:
     """
     No Docstrings Yet
@@ -17767,6 +19594,13 @@ def draw_label(layer: "layer_t", dsc: "draw_label_dsc_t", coords: "area_t", /) -
 
 
 def draw_character(layer: "layer_t", dsc: "draw_label_dsc_t", point: "point_t", unicode_letter: int, /) -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_letter(layer: "layer_t", dsc: "draw_letter_dsc_t", point: "point_t", /) -> None:
     """
     No Docstrings Yet
     """
@@ -17802,6 +19636,13 @@ def draw_arc(layer: "layer_t", dsc: "draw_arc_dsc_t", /) -> None:
 
 
 def draw_arc_get_area(x: int, y: int, radius: int, start_angle: "value_precise_t", end_angle: "value_precise_t", w: int, rounded: bool, area: "area_t", /) -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def draw_triangle(layer: "layer_t", draw_dsc: "draw_triangle_dsc_t", /) -> None:
     """
     No Docstrings Yet
     """
@@ -17900,6 +19741,13 @@ def objid_builtin_destroy() -> None:
 
 
 def refr_now(disp: "display_t", /) -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
+def display_refr_timer(arg0: "timer_t", /) -> None:
     """
     No Docstrings Yet
     """
@@ -18074,20 +19922,6 @@ def lodepng_deinit() -> None:
     ...
 
 
-def gd_open_gif_file(fname: str, /) -> "gd_GIF":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def gd_open_gif_data(data: Any, /) -> "gd_GIF":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
 def tjpgd_init() -> None:
     """
     No Docstrings Yet
@@ -18102,21 +19936,7 @@ def tjpgd_deinit() -> None:
     ...
 
 
-def draw_triangle(layer: "layer_t", draw_dsc: "draw_triangle_dsc_t", /) -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_sw_init() -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_sw_deinit() -> None:
+def draw_sw_i1_to_argb8888(buf_i1: Any, buf_argb8888: Any, width: int, height: int, buf_i1_stride: int, buf_argb8888_stride: int, index0_color: int, index1_color: int, /) -> None:
     """
     No Docstrings Yet
     """
@@ -18137,35 +19957,14 @@ def draw_sw_i1_invert(buf: Any, buf_size_px: int, /) -> None:
     ...
 
 
+def draw_sw_i1_convert_to_vtiled(buf: Any, buf_size: int, width: int, height: int, out_buf: Any, out_buf_size: int, bit_order_lsb: bool, /) -> None:
+    """
+    No Docstrings Yet
+    """
+    ...
+
+
 def draw_sw_rotate(src: Any, dest: Any, src_width: int, src_height: int, src_stride: int, dest_stride: int, rotation: "display_rotation_t", color_format: "color_format_t", /) -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_sw_mask_init() -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_sw_mask_deinit() -> None:
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_sw_mask_apply(masks: Any, mask_buf: "opa_t", abs_x: int, abs_y: int, len: int, /) -> "draw_sw_mask_res_t":
-    """
-    No Docstrings Yet
-    """
-    ...
-
-
-def draw_sw_mask_free_param(data: Any, /) -> None:
     """
     No Docstrings Yet
     """
@@ -18228,14 +20027,14 @@ def theme_default_init(disp: "display_t", color_primary: "color_t", color_second
     ...
 
 
-def theme_default_get() -> "theme_t":
+def theme_default_is_inited() -> bool:
     """
     No Docstrings Yet
     """
     ...
 
 
-def theme_default_is_inited() -> bool:
+def theme_default_get() -> "theme_t":
     """
     No Docstrings Yet
     """

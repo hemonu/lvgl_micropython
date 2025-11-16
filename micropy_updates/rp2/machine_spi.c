@@ -265,6 +265,7 @@ static void machine_spi_deinit(mp_obj_base_t *self_in)
 
 static void machine_spi_transfer(mp_obj_base_t *self_in, size_t len, const uint8_t *src, uint8_t *dest)
 {
+    //mp_printf(&mp_plat_print, "machine_spi_transfer: entered\n");
     mp_machine_hw_spi_device_obj_t *self = (mp_machine_hw_spi_device_obj_t *)self_in;
 
     if (self->spi_bus->state == MP_SPI_STATE_STOPPED) {
@@ -346,6 +347,7 @@ static void machine_spi_transfer(mp_obj_base_t *self_in, size_t len, const uint8
             spi_write_read_blocking(spi_inst, src, dest, len);
         }
     }
+    //mp_printf(&mp_plat_print, "machine_spi_transfer: %d byte(s) transferred\n", len);
 
     if (self->cs != mp_const_none) {
         mp_hal_pin_write(mp_hal_get_pin_obj(self->cs), 1);
