@@ -1,56 +1,56 @@
 from typing import Union, ClassVar, Callable, List, Any, TypedDict, Optional
 
 
-screen_load_anim_t = int
-fs_res_t = int
-cover_res_t = int
-display_render_mode_t = int
-palette_t = int
-scroll_snap_t = int
 border_side_t = int
-indev_type_t = int
-long_mode_t = int
-span_mode_t = int
+span_overflow_t = int
+fs_res_t = int
+style_state_cmp_t = int
+part_t = int
+text_flag_t = int
+encoding_code128_t = int
+state_t = int
+palette_t = int
+flex_flow_t = int
 flags_t = int
-opa_t = int
-indev_mode_t = int
+display_render_mode_t = int
 align_t = int
-orientation_t = int
-grad_dir_t = int
-type_t = int
 font_glyph_format_t = int
-display_rotation_t = int
-dir_t = int
-font_kerning_t = int
-scrollbar_mode_t = int
-grad_extend_t = int
 color_format_t = int
 base_dir_t = int
-encoding_code128_t = int
-result_t = int
-text_decor_t = int
-draw_task_type_t = int
-flex_flow_t = int
-fs_mode_t = int
-gridnav_ctrl_t = int
-style_state_cmp_t = int
-text_align_t = int
-rb_color_t = int
-style_res_t = int
-blend_mode_t = int
-group_refocus_policy_t = int
-indev_gesture_t = int
-state_t = int
-flag_t = int
-str_symbol_t = int
-flex_align_t = int
-grid_align_t = int
-text_flag_t = int
 ctrl_t = int
-span_overflow_t = int
-part_t = int
-indev_state_t = int
+orientation_t = int
 mode_t = int
+font_kerning_t = int
+blend_mode_t = int
+flag_t = int
+grad_dir_t = int
+type_t = int
+grid_align_t = int
+text_decor_t = int
+screen_load_anim_t = int
+scrollbar_mode_t = int
+indev_state_t = int
+result_t = int
+group_refocus_policy_t = int
+indev_type_t = int
+gridnav_ctrl_t = int
+str_symbol_t = int
+display_rotation_t = int
+opa_t = int
+style_res_t = int
+cover_res_t = int
+text_align_t = int
+scroll_snap_t = int
+rb_color_t = int
+grad_extend_t = int
+flex_align_t = int
+fs_mode_t = int
+indev_gesture_t = int
+span_mode_t = int
+dir_t = int
+long_mode_t = int
+draw_task_type_t = int
+indev_mode_t = int
 style_prop_t = int
 grad_color_t = int
 event_code_t = int
@@ -7780,42 +7780,6 @@ class subject_t(object):
         """
         ...
     
-    def init_float(self, value: float, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_float(self, value: float, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_float(self, /) -> float:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def get_previous_float(self, /) -> float:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_min_value_float(self, value: float, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def set_max_value_float(self, value: float, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
     def init_string(self, buf: str, prev_buf: str, size: int, value: str, /) -> None:
         """
         No Docstrings Yet
@@ -8217,7 +8181,6 @@ class _subject_value_t_type(TypedDict, total=False):
     num: int = ...
     pointer: Any = ...
     color: "color_t" = ...
-    float_v: float = ...
 
 
 
@@ -8270,20 +8233,6 @@ class subject_value_t(object):
 
     @color.setter
     def color(self, value: "color_t") -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-
-    @property
-    def float_v(self) -> float:
-       """
-       No Docstrings Yet
-       """ 
-       ...
-
-    @float_v.setter
-    def float_v(self, value: float) -> None:
         """
         No Docstrings Yet
         """
@@ -14182,12 +14131,6 @@ class obj(object):
         ...
     
     def add_subject_set_int_event(self, subject: "subject_t", trigger: "event_code_t", value: int, /) -> None:
-        """
-        No Docstrings Yet
-        """
-        ...
-    
-    def add_subject_set_float_event(self, subject: "subject_t", trigger: "event_code_t", value: float, /) -> None:
         """
         No Docstrings Yet
         """
