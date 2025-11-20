@@ -198,7 +198,7 @@
 
         self->callback = mp_const_none;
 
-        #if !defined(mp_hal_pin_output) && !defined(IDF_VER)
+        #if 0 //!defined(mp_hal_pin_output) && !defined(IDF_VER)
             mp_raise_msg(&mp_type_NotImplementedError, MP_ERROR_TEXT("LCD I80 but is not available for this MCU"));
         #else
             self->panel_io_config.user_ctx = self;

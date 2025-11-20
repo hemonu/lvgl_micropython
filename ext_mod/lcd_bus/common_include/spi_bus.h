@@ -9,12 +9,10 @@
 
     // micropython includes
     #include "py/objarray.h"
-    #include "mphalport.h"
     #include "py/obj.h"
 
 
     typedef struct _mp_lcd_spi_bus_obj_t mp_lcd_spi_bus_obj_t;
-
 
     #ifdef MP_PORT_UNIX
         struct _mp_lcd_spi_bus_obj_t {
@@ -55,12 +53,14 @@
         } lcd_panel_io_spi_config_t;
 
         struct _mp_lcd_spi_bus_obj_t {
+            
+            /*
             mp_obj_base_t base;
 
-            /* callback function that gets called after the buffer
-                * has finished being sent. This only gets called after
-                * sending the frame buffer
-                */
+            //  callback function that gets called after the buffer
+            //  * has finished being sent. This only gets called after
+            //  * sending the frame buffer
+            //    
             mp_obj_t callback;
 
             void *buf1;
@@ -71,9 +71,17 @@
             bool trans_done;
             bool rgb565_byte_swap;
 
-            /* stores function pointers to carry out work to be done */
+            // stores function pointers to carry out work to be done
             lcd_panel_io_t panel_io_handle;
-            /* config settings */
+            */
+
+            /* access to function pointers in lcd_types is via a pointer 
+            to mp_lcd_bus_obj_t. So first part of this structure has to be 
+            the same, otherwise pointer will be wrong*/
+
+            mp_lcd_bus_obj_t lcd_bus;
+            
+            // config settings
             lcd_panel_io_spi_config_t panel_io_config;
 
             /* stores the SPI instance that gets created.

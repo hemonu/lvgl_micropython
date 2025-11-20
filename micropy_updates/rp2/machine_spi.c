@@ -111,7 +111,7 @@ mp_obj_t machine_spi_make_new(const mp_obj_type_t *type, size_t n_args, size_t n
     enum { ARG_id, ARG_baudrate, ARG_polarity, ARG_phase, ARG_bits, ARG_firstbit, ARG_cs, ARG_sck, ARG_mosi, ARG_miso };
     static const mp_arg_t allowed_args[] = {
         { MP_QSTR_id,       MP_ARG_REQUIRED | MP_ARG_OBJ },
-        { MP_QSTR_baudrate, MP_ARG_REQUIRED | MP_ARG_INT, {.u_int = DEFAULT_SPI_BAUDRATE} },
+        { MP_QSTR_baudrate, MP_ARG_INT, {.u_int = DEFAULT_SPI_BAUDRATE} },
         { MP_QSTR_polarity, MP_ARG_KW_ONLY  | MP_ARG_INT, {.u_int = DEFAULT_SPI_POLARITY} },
         { MP_QSTR_phase,    MP_ARG_KW_ONLY  | MP_ARG_INT, {.u_int = DEFAULT_SPI_PHASE} },
         { MP_QSTR_bits,     MP_ARG_KW_ONLY  | MP_ARG_INT, {.u_int = DEFAULT_SPI_BITS} },
@@ -375,7 +375,7 @@ static mp_int_t machine_spi_get_buffer(mp_obj_t o_in, mp_buffer_info_t *bufinfo,
 static const mp_machine_spi_p_t machine_spi_p = {
     .init = machine_spi_init,
     .transfer = machine_spi_transfer,
-    .deinit = machine_spi_deinit
+    .deinit = machine_spi_deinit,
 };
 
 

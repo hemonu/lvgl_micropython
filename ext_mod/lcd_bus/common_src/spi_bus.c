@@ -5,7 +5,7 @@
 // local includes
 #include "lcd_types.h"
 #include "modlcd_bus.h"
-#include "spi_bus.h"
+#include "../common_include/spi_bus.h"
 #include "../../../micropy_updates/common/mp_spi_common.h"
 
 // micropython includes
@@ -132,12 +132,12 @@
 
         // create new object
         mp_lcd_spi_bus_obj_t *self = m_new_obj(mp_lcd_spi_bus_obj_t);
-        self->base.type = &mp_lcd_spi_bus_type;
+        self->lcd_bus.base.type = &mp_lcd_spi_bus_type;
 
         self->spi_bus = (machine_hw_spi_obj_t *)MP_OBJ_TO_PTR(args[ARG_spi_bus].u_obj);
 
     #if !defined(IDF_VER)
-        self->callback = mp_const_none;
+        self->lcd_bus.callback = mp_const_none;
 
         self->freq = (uint32_t)args[ARG_freq].u_int;
 
@@ -163,20 +163,20 @@
             mp_hal_pin_write(mp_hal_get_pin_obj(self->panel_io_config.cs_gpio), !self->panel_io_config.flags.cs_high_active);
         }
 
-        self->panel_io_handle.del = &SPI_del;
-        self->panel_io_handle.init = &SPI_init;
-        self->panel_io_handle.tx_param = &SPI_tx_param;
-        self->panel_io_handle.rx_param = &SPI_rx_param;
-        self->panel_io_handle.tx_color = &SPI_tx_color;
-        self->panel_io_handle.get_lane_count = &SPI_get_lane_count;
-        LCD_DEBUG_PRINT("SPI_get_lane_count address: %x\n", self->panel_io_handle.get_lane_count)
-        LCD_DEBUG_PRINT("SPI_init address: %x\n", self->panel_io_handle.init)
-        LCD_DEBUG_PRINT("SPI_rx_param address: %x\n", self->panel_io_handle.rx_param)
-        LCD_DEBUG_PRINT("SPI_tx_param address: %x\n", self->panel_io_handle.tx_param)
-        LCD_DEBUG_PRINT("SPI_tx_color address: %x\n", self->panel_io_handle.tx_color)
-        LCD_DEBUG_PRINT("SPI_allocate_framebuffer address: %x\n", self->panel_io_handle.allocate_framebuffer)
-        LCD_DEBUG_PRINT("SPI_free_framebuffer address: %x\n", self->panel_io_handle.free_framebuffer)
-        LCD_DEBUG_PRINT("SPI_del address: %x\n", self->panel_io_handle.del)
+        self->lcd_bus.panel_io_handle.del = &SPI_del;
+        self->lcd_bus.panel_io_handle.init = &SPI_init;
+        self->lcd_bus.panel_io_handle.tx_param = &SPI_tx_param;
+        self->lcd_bus.panel_io_handle.rx_param = &SPI_rx_param;
+        self->lcd_bus.panel_io_handle.tx_color = &SPI_tx_color;
+        self->lcd_bus.panel_io_handle.get_lane_count = &SPI_get_lane_count;
+        LCD_DEBUG_PRINT("SPI_get_lane_count address: %x\n", self->lcd_bus.panel_io_handle.get_lane_count)
+        LCD_DEBUG_PRINT("SPI_init address: %x\n", self->lcd_bus.panel_io_handle.init)
+        LCD_DEBUG_PRINT("SPI_rx_param address: %x\n", self->lcd_bus.panel_io_handle.rx_param)
+        LCD_DEBUG_PRINT("SPI_tx_param address: %x\n", self->lcd_bus.panel_io_handle.tx_param)
+        LCD_DEBUG_PRINT("SPI_tx_color address: %x\n", self->lcd_bus.panel_io_handle.tx_color)
+        LCD_DEBUG_PRINT("SPI_allocate_framebuffer address: %x\n", self->lcd_bus.panel_io_handle.allocate_framebuffer)
+        LCD_DEBUG_PRINT("SPI_free_framebuffer address: %x\n", self->lcd_bus.panel_io_handle.free_framebuffer)
+        LCD_DEBUG_PRINT("SPI_del address: %x\n", self->lcd_bus.panel_io_handle.del)
 
     #endif /* !defined(IDF_VER) */
 
@@ -229,7 +229,7 @@
             self->send_param = send_param_8;
         }
 
-        self->rgb565_byte_swap = rgb565_byte_swap;
+        self->lcd_bus.rgb565_byte_swap = rgb565_byte_swap;
 
         /*
         LCD_DEBUG_PRINT("pointers send_param and send_cmd set\n")
@@ -258,7 +258,7 @@
 
         LCD_DEBUG_PRINT("new spi generated\n")
 
-        //self->bus_handle = spi;
+        //self->lcd_bus.bus_handle = spi;
         self->panel_io_config.spi_transfer = ((mp_machine_spi_p_t *)MP_OBJ_TYPE_GET_SLOT(&machine_spi_type, protocol))->transfer;
         //self->panel_io_config.spi_transfer = self->spi_bus->transfer;
 
@@ -343,7 +343,7 @@
         // interfaces built into the esp-idf so we need to block until that transfer
         // has completed if no callback is supplied. Instead of changing all of the
         // mechanics of doing that it is just easier to call the function manually.
-        bus_trans_done_cb(&self->panel_io_handle, NULL, self);
+        bus_trans_done_cb(&self->lcd_bus.panel_io_handle, NULL, self);
 
         LCD_DEBUG_PRINT("leaving SPI_tx_color\n")
         return LCD_OK;
